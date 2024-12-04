@@ -10,6 +10,8 @@ gcloud services enable run.googleapis.com
 
 2. If you are asked to authorize the use of your credentials, do so. You should then see a successful message similar to this one:
 
+![alt text](image.png)
+
 > Note: You can also enable the API using the APIs & Services section of the console.
 
 3. Set the compute region:
@@ -23,6 +25,8 @@ gcloud config set compute/region "REGION"
 ```bash
 LOCATION="Region"
 ```
+
+![alt text](image-1.png)
 
 ### 2. Write the sample application
 
@@ -83,6 +87,8 @@ app.listen(port, () => {
 This code creates a basic web server that listens on the port defined by the PORT environment variable. Your app is now finished and ready to be containerized and uploaded to Artifact Registry.
 
 6. Press CTRL+X, then Y, then Enter to save the index.js file
+
+![alt text](image-2.png)
 
 > Note: You can use many other languages to get started with Cloud Run. You can find instructions for Go, Python, Java, PHP, Ruby, Shell scripts, and others from the [Quickstarts guide](https://cloud.google.com/run/docs/quickstarts).
 
@@ -151,6 +157,8 @@ docker run -d -p 8080:8080 gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld
 
 7. In the Cloud Shell window, click on Web preview and select Preview on port 8080.
 
+![alt text](image-3.png)
+
 This should open a browser window showing the "Hello World!" message. You could also simply use curl localhost:8080.
 
 ### 4. Deploy to Cloud Run
@@ -163,7 +171,7 @@ gcloud run deploy --image gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld --allow-unauth
 
 The allow-unauthenticated flag in the command above makes your service publicly accessible.
 
-2. When prompted confirm the service name by pressing Enter.
+2. When prompted confirm the `service name` by pressing Enter.
 
 > Note: You may be prompted Do you want enable these APIs to continue (this will take a few minutes)? (y/N)? if you are, enter Y to enable the API needed.
 
@@ -171,7 +179,7 @@ Wait a few moments until the deployment is complete.
 
 On success, the command line displays the service URL:
 
-From the Navigation menu, in the Serverless section, click Cloud Run and you should see your helloworld service listed:
+![alt text](image-4.png)
 
 ### 5. Clean up
 
@@ -190,3 +198,5 @@ gcloud run services delete helloworld --region="REGION"
 ```
 
 4. When prompted to continue type Y, and press Enter.
+
+![alt text](image-5.png)
