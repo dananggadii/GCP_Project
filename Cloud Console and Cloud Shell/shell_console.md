@@ -10,7 +10,11 @@
 
 4. Click Create.
 
+![alt text](image.png)
+
 5. If prompted Public access will be prevented click Confirm.
+
+![alt text](image-1.png)
 
 ### 2. Use Cloud Shell to create a Cloud Storage bucket
 
