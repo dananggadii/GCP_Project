@@ -10,6 +10,8 @@
 
 4. For Subnet creation mode, click Custom.
 
+![alt text](image.png)
+
 5. In New Subnet specify the following, and leave the remaining settings as their defaults:
 
 | Property   | Value         |
@@ -19,6 +21,8 @@
 | IPv4 range | 10.130.0.0/20 |
 
 > Note: Don't enable Private Google access yet!
+
+![alt text](image-1.png)
 
 6. Click Done.
 
@@ -41,13 +45,17 @@
 
 11. For tcp, click the checkbox and specify port 22.
 
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
 12. Click Create.
 
 > Note: In order to connect to your private instance using SSH, you need to open an appropriate port on the firewall. [IAP connections](https://cloud.google.com/iap/docs/using-tcp-forwarding?hl=id) come from a specific set of IP addresses (35.235.240.0/20). Therefore, you can limit the rule to this CIDR range.
 
 ### 2. Create the VM instance with no public IP address
 
-1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > VM instances.
+1. In the Cloud Console, on the Navigation menu, click Compute Engine > VM instances.
 
 2. Click Create Instance.
 
@@ -62,6 +70,12 @@
 | Machine type | e2-medium (2vCPU, 1 core, 4 GB memory) |
 | Boot disk    | Debian GNU/Linux 12 (bookworm)         |
 
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
 4. Click Advanced options.
 
 5. Click Networking.
@@ -70,11 +84,11 @@
 
 7. Specify the following, and leave the remaining settings as their defaults:
 
-| Property              | Value                |
-| --------------------- | -------------------- |
-| Network               | managementnet        |
-| Subnetwork            | managementsubnet-usm |
-| External IPv4 address | None                 |
+| Property              | Value       |
+| --------------------- | ----------- |
+| Network               | vpc_name    |
+| Subnetwork            | subnet_name |
+| External IPv4 address | None        |
 
 8. Click Done.
 
