@@ -232,3 +232,99 @@ gcloud storage buckets create gs://$YOUR_BUCKET_NAME-minecraft-backup
 > ```bash
 > echo YOUR_BUCKET_NAME=$YOUR_BUCKET_NAME >> ~/.profile
 > ```
+
+Create a backup script
+
+1. In the mc-server SSH terminal, navigate to your home directory:
+
+```bash
+cd /home/minecraft
+```
+
+2. To create the script, run the following command:
+
+```bash
+sudo nano /home/minecraft/backup.sh
+```
+
+3. Copy and paste the following script into the file:
+
+```bash
+#!/bin/bash
+screen -r mcs -X stuff '/save-all\n/save-off\n'
+/usr/bin/gcloud storage cp -R ${BASH_SOURCE%/*}/world gs://${YOUR_BUCKET_NAME}-minecraft-backup/$(date "+%Y%m%d-%H%M%S")-world
+screen -r mcs -X stuff '/save-on\n'
+```
+
+4. Press Ctrl+O, ENTER to save the file, and press Ctrl+X to exit nano.
+
+5. To make the script executable, run the following command:
+
+```bash
+sudo chmod 755 /home/minecraft/backup.sh
+```
+
+Test the backup script and schedule a cron job
+
+1. In the mc-server SSH terminal, run the backup script:
+
+```bash
+. /home/minecraft/backup.sh
+```
+
+2. After the script finishes, return to the Cloud Console.
+
+3. To verify that the backup file was written, on the Navigation menu ( Navigation menu icon), click Cloud Storage > Buckets.
+
+4. Click on the backup bucket name. You should see a folder with a date-time stamp name. Now that you've verified that the backups are working, you can schedule a cron job to automate the task.
+
+5. In the mc-server SSH terminal, open the cron table for editing:
+
+```bash
+sudo crontab -e
+```
+
+6. When you are prompted to select an editor, type the number corresponding to nano, and press ENTER.
+
+7. At the bottom of the cron table, paste the following line:
+
+```bash
+0 */4 * * * /home/minecraft/backup.sh
+```
+
+> Note: That line instructs cron to run backups every 4 hours.
+
+8. Press Ctrl+O, ENTER to save the cron table, and press Ctrl+X to exit nano.
+
+### 6. Server maintenance
+
+Connect via SSH to the server, stop it and shut down the VM
+
+1. In the mc-server SSH terminal, run the following command:
+
+```bash
+sudo screen -r -X stuff '/stop\n'
+```
+
+2. In the Cloud Console, on the Navigation menu ( Navigation menu icon), click Compute Engine > VM instances.
+
+3. Select mc-server.
+
+4. Click Stop.
+
+5. In the confirmation dialog, click Stop to confirm. You will be logged out of your SSH session.
+
+Automate server maintenance with startup and shutdown scripts
+
+1. Click `vm_name`.
+
+2. Click Edit.
+
+3. For Metadata, click + Add Item and specify the following:
+
+| Property            | Value                                                                        |
+| ------------------- | ---------------------------------------------------------------------------- |
+| startup-script-url  | https://storage.googleapis.com/cloud-training/archinfra/mcserver/startup.sh  |
+| shutdown-script-url | https://storage.googleapis.com/cloud-training/archinfra/mcserver/shutdown.sh |
+
+4. Click Save.
