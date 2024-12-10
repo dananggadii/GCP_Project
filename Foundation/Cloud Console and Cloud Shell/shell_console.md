@@ -80,6 +80,8 @@ INFRACLASS_REGION=[YOUR_REGION]
 echo $INFRACLASS_REGION
 ```
 
+![alt text](image-10.png)
+
 #### Append the environment variable to a file
 
 1. Create a subdirectory for materials used in this lab:
@@ -127,6 +129,8 @@ echo $INFRACLASS_PROJECT_ID
 
 8. There will be no output because the environment variable no longer exists.
 
+![alt text](image-11.png)
+
 #### Modify the bash profile and create persistence
 
 1. Edit the shell profile with the following command:
@@ -148,5 +152,7 @@ source infraclass/config
 ```bash
 echo $INFRACLASS_PROJECT_ID
 ```
+
+![alt text](image-12.png)
 
 You should now see the expected value that you set in the config file.
