@@ -98,3 +98,23 @@ Before connecting using Desktop IAP, ensure the following prerequisites are met:
 
 - You have configured the VPC to [allow IAP traffic to the VM instance](https://cloud.google.com/iap/docs/using-tcp-forwarding?hl=id#create-firewall-rule).
 - You have downloaded and installed [IAP Desktop on your local computer](https://googlecloudplatform.github.io/iap-desktop/?utm_source=cloud.google.com).
+
+![alt text](image-12.png)
+
+![alt text](image-13.png)
+
+![alt text](image-14.png)
+
+To connect to a VM instance using Desktop IAP, perform the following steps:
+
+- In IAP Desktop, select Profile > Add project .
+
+- Enter your project ID or name, then click OK .
+
+- In the Project Explorer window , right-click the VM instance you want to connect to, and then select Connect
+
+![alt text](image-15.png)
+
+![alt text](image-17.png)
+
+![alt text](image-19.png)
