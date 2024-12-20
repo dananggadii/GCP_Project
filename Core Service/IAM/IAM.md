@@ -28,9 +28,26 @@ Navigate to the IAM console and explore roles
 
 6. Switch back to the Username 1 Cloud Console tab.
 
-7. In the IAM console, for Username 2, click on the pencil icon. Username 2
-   currently has the Viewer role. Do not change the Project Role.
+7. In the IAM console, for Username 2, click on the pencil icon. Username 2 currently has the Viewer role. Do not change the Project Role.
 
 8. Click CANCEL.
 
-### 3. Prepare a resource for access testing
+### 3. Remove project access
+
+1. On the Navigation menu (Navigation menu icon), click IAM & admin > IAM.
+
+2. Select Username 2 and click Remove Access.
+
+3. Confirm by clicking CONFIRM.
+
+### 4. Add storage access
+
+1. On the Navigation menu (Navigation menu icon), click IAM & admin > IAM.
+
+2. Click Grant Access to add the user.
+
+3. For New principals, paste the Username 2 value you copied from the Qwiklabs Connection Details dialog.
+
+4. For Select a role, select Cloud Storage > Storage Object Viewer.
+
+5. Click SAVE.
