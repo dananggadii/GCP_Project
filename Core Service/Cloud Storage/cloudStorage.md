@@ -129,9 +129,9 @@ Generate a CSEK key
 python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
 ```
 
-Result (this is example output):
+2. Result (this is example output):
 
-2. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of ``
+3. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of ``
 
 Modify the boto file
 
@@ -199,9 +199,9 @@ nano .boto
 
 3. Uncomment decryption_key1 by removing the # character, and copy the current key from the encryption_key line to the decryption_key1 line.
 
-Result (this is example output):
+4. Result (this is example output):
 
-4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
 Generate another CSEK key and add to the boto file
 
@@ -221,9 +221,9 @@ nano .boto
 
 Uncomment encryption and paste the new key value for `encryption_key=`.
 
-Result (this is example output):
+5. Result (this is example output):
 
-5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+6. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
 Rewrite the key for file 1 and comment out the old decrypt key
 
@@ -241,9 +241,9 @@ nano .boto
 
 3. Comment out the current decryption_key1 line by adding the # character back in.
 
-Result (this is example output):
+4. Result (this is example output):
 
-4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
 Download setup 2 and setup3
 
@@ -367,3 +367,274 @@ nano setup.html
 ```bash
 gcloud storage cp -v setup.html gs://$BUCKET_NAME_1
 ```
+
+List all versions of the file
+
+1. To list all versions of the file, run the following command:
+
+```bash
+gcloud storage ls -a gs://$BUCKET_NAME_1/setup.html
+```
+
+2. Highlight and copy the name of the oldest version of the file (the first listed), referred to as [VERSION_NAME] in the next step.
+
+3. Store the version value in the environment variable [VERSION_NAME].
+
+```bash
+export VERSION_NAME=<Enter VERSION name here>
+```
+
+4. Verify it with echo:
+
+```bash
+echo $VERSION_NAME
+```
+
+5. Result (this is example output):
+
+Download the oldest, original version of the file and verify recovery
+
+1. Download the original version of the file:
+
+```bash
+gcloud storage cp $VERSION_NAME recovered.txt
+```
+
+2. To verify recovery, run the following commands:
+
+```bash
+ls -al setup.html
+
+ls -al recovered.txt
+```
+
+### 7. Synchronize a directory to a bucket
+
+Make a nested directory and sync with a bucket
+
+1. Run the following commands:
+
+```bash
+mkdir firstlevel
+mkdir ./firstlevel/secondlevel
+cp setup.html firstlevel
+cp setup.html firstlevel/secondlevel
+```
+
+2. To sync the firstlevel directory on the VM with your bucket, run the following command:
+
+```bash
+gsutil rsync -r ./firstlevel gs://$BUCKET_NAME_1/firstlevel
+```
+
+Examine the results
+
+1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click
+   Cloud Storage > Buckets.
+
+2. Click [BUCKET_NAME_1]. Notice the subfolders in the bucket.
+
+3. Click on /firstlevel and then on /secondlevel.
+
+4. Compare what you see in the Cloud Console with the results of the following command:
+
+```bash
+gcloud storage ls -r gs://$BUCKET_NAME_1/firstlevel
+```
+
+5. Exit Cloud Shell:
+
+```bash
+exit
+```
+
+### 8. Cross-project sharing
+
+Switch to the second project
+
+1. Open a new incognito tab.
+
+2. Navigate to console.cloud.google.com to open a Cloud Console.
+
+3. Click the project selector dropdown in the title bar.
+
+4. Click All, and then click the second project provided for you in the
+   Qwiklabs Connection Details dialog. Remember that the Project ID is a unique name across all Google Cloud projects. The second project ID will be referred to as [PROJECT_ID_2].
+
+Prepare the bucket
+
+1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click
+   Cloud Storage > Buckets.
+
+2. Click Create.
+
+3. Specify the following, and leave the remaining settings as their defaults:
+
+| Property       | Value                                                                               |
+| -------------- | ----------------------------------------------------------------------------------- |
+| Name           | Enter a globally unique name                                                        |
+| Location       | type Region                                                                         |
+| Region         | REGION                                                                              |
+| Access control | Fine-grained (object-level permission in addition to your bucket-level permissions) |
+
+4. Note the bucket name. It will be referred to as [BUCKET_NAME_2] in the following steps.
+
+5. Click Create.
+
+Upload a text file to the bucket
+
+1. Upload a file to [BUCKET_NAME_2]. Any small example file or text file will do.
+
+2. Note the file name (referred to as [FILE_NAME]); you will use it later.
+
+Create an IAM Service Account
+
+1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click IAM & admin > Service accounts.
+
+2. Click Create service account.
+
+3. On Service account details page, specify the Service account name as cross-project-storage.
+
+4. Click Create and Continue.
+
+5. On the Service account permissions page, specify the role as Cloud Storage > Storage Object Viewer.
+
+6. Click Continue and then Done.
+
+7. Click the cross-project-storage service account to add the JSON key.
+
+8. In Keys tab, click Add Key dropdown and select Create new key.
+
+9. Select JSON as the key type and click Create. A JSON key file will be downloaded. You will need to find this key file and upload it in into the VM in a later step.
+
+10. Click Close.
+
+11. On your hard drive, rename the JSON key file to credentials.json.
+
+12. In the upper pane, switch back to [PROJECT_ID_1].
+
+Create a VM
+
+1. On the Navigation menu (Navigation menu icon), click Compute Engine > VM instances.
+
+2. Click Create Instance.
+
+3. On the Machine configuration page, specify the following, and leave the remaining settings as their defaults:
+
+| Property     | Value                   |
+| ------------ | ----------------------- |
+| Name         | Type a name for your VM |
+| Region       | region_name             |
+| Zone         | zone_name               |
+| Series       | E2                      |
+| Machine type | e2-medium               |
+
+4. Click OS and storage.
+
+5. If the Image shown is not Debian GNU/Linux 12 (bookworm), click Change and select Debian GNU/Linux 12 (bookworm), and then click Select.
+
+6. Click Create.
+
+SSH to the VM
+
+1. For crossproject, click SSH to launch a terminal and connect.
+
+2. Store [BUCKET_NAME_2] in an environment variable:
+
+```bash
+export BUCKET_NAME_2=<enter bucket name 2 here>
+```
+
+3. Verify it with echo:
+
+```bash
+echo $BUCKET_NAME_2
+```
+
+4. Store [FILE_NAME] in an environment variable:
+
+```bash
+export FILE_NAME=<enter FILE_NAME here>
+```
+
+5. Verify it with echo:
+
+```bash
+echo $FILE_NAME
+```
+
+6. List the files in [PROJECT_ID_2]:
+
+```bash
+gcloud storage ls gs://$BUCKET_NAME_2/
+```
+
+7. Result (this is example output):
+
+Authorize the VM
+
+1. To upload credentials.json through the SSH VM terminal, click on the up arrow icon in the upper-right corner, and then click `Upload file`.
+
+2. Select credentials.json and upload it.
+
+3. Click Close in the File Transfer window.
+
+4. Verify that the JSON file has been uploaded to the VM:
+
+```bash
+ls
+```
+
+5. Result (this is example output):
+
+6. Enter the following command in the terminal to authorize the VM to use the Google Cloud API:
+
+```bash
+gcloud auth activate-service-account --key-file credentials.json
+```
+
+Verify access
+
+1. Retry this command:
+
+```bash
+gcloud storage ls gs://$BUCKET_NAME_2/
+```
+
+2. Retry this command:
+
+```bash
+gcloud storage cat gs://$BUCKET_NAME_2/$FILE_NAME
+```
+
+3. Try to copy the credentials file to the bucket:
+
+```bash
+gcloud storage cp credentials.json gs://$BUCKET_NAME_2/
+```
+
+4. Result (this is example output):
+
+Modify role
+
+1. In the upper pane, switch back to [PROJECT_ID_2].
+
+2. In the Cloud Console, on the Navigation menu (Navigation menu icon), click IAM & admin > IAM.
+
+3. Click the pencil icon for the cross-project-storage service account (You might have to scroll to the right to see this icon).
+
+4. Click on the Storage Object Viewer role, and then click Cloud Storage > Storage Object Admin.
+
+5. Click Save. If you don't click Save, the change will not be made.
+
+Verify changed access
+
+1. Return to the SSH terminal for crossproject.
+
+2. Copy the credentials file to the bucket:
+
+```bash
+gcloud storage cp credentials.json gs://$BUCKET_NAME_2/
+```
+
+3. Result (this is example output):
