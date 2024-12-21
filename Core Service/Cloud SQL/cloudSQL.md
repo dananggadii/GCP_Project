@@ -119,4 +119,34 @@ curl -H "Metadata-Flavor: Google" http://169.254.169.254/computeMetadata/v1/inst
 > Note: Installing Wordpress might take up to 3 minutes, because it propagates all its data to your SQL Server.
 
 8. When a 'Success!' window appears, remove the text after the IP address in your web browser's address bar and press ENTER.
-   You'll be presented with a working Wordpress Blog!
+
+### 4. Connect to Cloud SQL via internal IP
+
+1. In the Cloud Console, on the Navigation menu, click SQL.
+
+2. Click wordpress-db.
+
+3. Note the Private IP address of the Cloud SQL server; it will be referred to as [SQL_PRIVATE_IP].
+
+4. On the Navigation menu, click Compute Engine.
+
+> Note: Notice that wordpress-private-ip is located at `REGION`, where your Cloud SQL is located, which enables you to leverage a more secure connection.
+
+5. Copy the external IP address of wordpress-private-ip, paste it in a browser window, and press ENTER.
+
+6. Click Let's Go.
+
+7. Specify the following, and leave the remaining settings as their defaults:
+
+| Property      | Value                                                                       |
+| ------------- | --------------------------------------------------------------------------- |
+| Database Name | wordpress                                                                   |
+| Username      | root                                                                        |
+| Password      | type the [ROOT_PASSWORD] configured when the Cloud SQL instance was created |
+| Database Host | [SQL_PRIVATE_IP]                                                            |
+
+8. Click Submit.
+
+9. Click Run the installation.
+
+10. In your web browser's address bar, remove the text after the IP address and press ENTER.
