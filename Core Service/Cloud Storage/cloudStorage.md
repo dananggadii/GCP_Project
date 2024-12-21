@@ -242,3 +242,128 @@ nano .boto
 3. Comment out the current decryption_key1 line by adding the # character back in.
 
 Result (this is example output):
+
+4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+Download setup 2 and setup3
+
+1. To download setup2.html, run the following command:
+
+```bash
+gsutil cp gs://$BUCKET_NAME_1/setup2.html recover2.html
+```
+
+2. To download setup3.html, run the following command:
+
+```bash
+gsutil cp gs://$BUCKET_NAME_1/setup3.html recover3.html
+```
+
+### 5. Enable lifecycle management
+
+View the current lifecycle policy for the bucket
+
+1. Run the following command to view the current lifecycle policy:
+
+```bash
+gsutil lifecycle get gs://$BUCKET_NAME_1
+```
+
+Create a JSON lifecycle policy file
+
+1. To create a file named life.json, run the following command:
+
+```bash
+nano life.json
+```
+
+2. Paste the following value into the life.json file:
+
+```json
+{
+  "rule": [
+    {
+      "action": { "type": "Delete" },
+      "condition": { "age": 31 }
+    }
+  ]
+}
+```
+
+3. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+Set the policy and verify
+
+1. To set the policy, run the following command:
+
+```bash
+gsutil lifecycle set life.json gs://$BUCKET_NAME_1
+```
+
+2. To verify the policy, run the following command:
+
+```bash
+gsutil lifecycle get gs://$BUCKET_NAME_1
+```
+
+### 6. Enable versioning
+
+View the versioning status for the bucket and enable versioning
+
+1. Run the following command to view the current versioning status for the bucket:
+
+```bash
+gsutil versioning get gs://$BUCKET_NAME_1
+```
+
+2. To enable versioning, run the following command:
+
+```bash
+gsutil versioning set on gs://$BUCKET_NAME_1
+```
+
+2. To verify that versioning was enabled, run the following command:
+
+```bash
+gsutil versioning get gs://$BUCKET_NAME_1
+```
+
+Create several versions of the sample file in the bucket
+
+1. Check the size of the sample file:
+
+```bash
+ls -al setup.html
+```
+
+2. Open the setup.html file:
+
+```bash
+nano setup.html
+```
+
+3. Delete any 5 lines from setup.html to change the size of the file.
+
+4. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+5. Copy the file to the bucket with the -v versioning option:
+
+```bash
+gcloud storage cp -v setup.html gs://$BUCKET_NAME_1
+```
+
+6. Open the setup.html file:
+
+```bash
+nano setup.html
+```
+
+7. Delete another 5 lines from setup.html to change the size of the file.
+
+8. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
+
+9. Copy the file to the bucket with the -v versioning option:
+
+```bash
+gcloud storage cp -v setup.html gs://$BUCKET_NAME_1
+```
