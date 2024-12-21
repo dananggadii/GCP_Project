@@ -118,3 +118,127 @@ ls
 ```bash
 gcloud storage cp gs://$BUCKET_NAME_1/setup.html setup.html
 ```
+
+### 3. Customer-supplied encryption keys (CSEK)
+
+Generate a CSEK key
+
+1. Run the following command to create a key:
+
+```bash
+python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
+```
+
+Result (this is example output):
+
+2. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of ``
+
+Modify the boto file
+
+1. To view and open the boto file, run the following commands:
+
+```bash
+ls -al
+nano .boto
+```
+
+2. Locate the line with `#encryption_key=`
+
+3. Uncomment the line by removing the # character, and paste the key you generated earlier at the end.
+
+Example (this is an example):
+
+4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+Upload the remaining setup files (encrypted) and verify in the Cloud Console
+
+1. To upload the remaining setup.html files, run the following commands:
+
+```bash
+gsutil cp setup2.html gs://$BUCKET_NAME_1/
+gsutil cp setup3.html gs://$BUCKET_NAME_1/
+```
+
+2. Return to the Cloud Console.
+
+3. Click [BUCKET_NAME_1]. Both setup2.html and setup3.html files show that they are customer-encrypted.
+
+Delete local files, copy new files, and verify encryption
+
+1. To delete your local files, run the following command in Cloud Shell:
+
+```bash
+rm setup*
+```
+
+2. To copy the files from the bucket again, run the following command:
+
+```bash
+gsutil cp gs://$BUCKET_NAME_1/setup* ./
+```
+
+3. To cat the encrypted files to see whether they made it back, run the following commands:
+
+```bash
+cat setup.html
+cat setup2.html
+cat setup3.html
+```
+
+### 4. Rotate CSEK keys
+
+Move the current CSEK encrypt key to decrypt key
+
+1. Run the following command to open the .boto file:
+
+```bash
+nano .boto
+```
+
+2. Comment out the current encryption_key line by adding the # character to the beginning of the line.
+
+3. Uncomment decryption_key1 by removing the # character, and copy the current key from the encryption_key line to the decryption_key1 line.
+
+Result (this is example output):
+
+4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+Generate another CSEK key and add to the boto file
+
+1. Run the following command to generate a new key:
+
+```bash
+python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
+```
+
+2. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of `tmxElCaabWvJqR7uXEWQF39DhWTcDvChzuCmpHe6sb0=`.
+
+3. To open the boto file, run the following command:
+
+```bash
+nano .boto
+```
+
+Uncomment encryption and paste the new key value for `encryption_key=`.
+
+Result (this is example output):
+
+5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
+
+Rewrite the key for file 1 and comment out the old decrypt key
+
+1. Run the following command:
+
+```bash
+gsutil rewrite -k gs://$BUCKET_NAME_1/setup2.html
+```
+
+2. To open the boto file, run the following command:
+
+```bash
+nano .boto
+```
+
+3. Comment out the current decryption_key1 line by adding the # character back in.
+
+Result (this is example output):
