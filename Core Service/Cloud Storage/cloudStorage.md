@@ -771,3 +771,5 @@ gcloud storage cp credentials.json gs://$BUCKET_NAME_2/
 ```
 
 3. Result (this is example output):
+
+![alt text](image-56.png)
