@@ -111,6 +111,8 @@ Examine the file in the Cloud Console
 
 3. Verify that for file setup.html, Public access has a Public link available.
 
+![alt text](image-7.png)
+
 Delete the local file and copy back from Cloud Storage
 
 1. Return to Cloud Shell. If necessary, click Activate Cloud Shell (Cloud Shell).
@@ -133,6 +135,8 @@ ls
 gcloud storage cp gs://$BUCKET_NAME_1/setup.html setup.html
 ```
 
+![alt text](image-8.png)
+
 ### 3. Customer-supplied encryption keys (CSEK)
 
 Generate a CSEK key
@@ -145,6 +149,8 @@ python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
 
 2. Result (this is example output):
 
+![alt text](image-9.png)
+
 3. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of ``
 
 Modify the boto file
@@ -156,11 +162,18 @@ ls -al
 nano .boto
 ```
 
+> Note: If the .boto file is empty, close the nano editor with Ctrl+X and generate a new .boto file using the `gsutil config -n` command. Then, try opening the file again with the above commands.
+> If the .boto file is still empty, you might have to locate it using the `gsutil version -l` command.
+
+![alt text](image-10.png)
+
 2. Locate the line with `#encryption_key=`
 
 3. Uncomment the line by removing the # character, and paste the key you generated earlier at the end.
 
 Example (this is an example):
+
+![alt text](image-11.png)
 
 4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -173,9 +186,13 @@ gsutil cp setup2.html gs://$BUCKET_NAME_1/
 gsutil cp setup3.html gs://$BUCKET_NAME_1/
 ```
 
+![alt text](image-12.png)
+
 2. Return to the Cloud Console.
 
 3. Click [BUCKET_NAME_1]. Both setup2.html and setup3.html files show that they are customer-encrypted.
+
+![alt text](image-13.png)
 
 Delete local files, copy new files, and verify encryption
 
@@ -215,6 +232,8 @@ nano .boto
 
 4. Result (this is example output):
 
+![alt text](image-14.png)
+
 5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
 Generate another CSEK key and add to the boto file
@@ -227,6 +246,8 @@ python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
 
 2. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of `tmxElCaabWvJqR7uXEWQF39DhWTcDvChzuCmpHe6sb0=`.
 
+![alt text](image-15.png)
+
 3. To open the boto file, run the following command:
 
 ```bash
@@ -236,6 +257,8 @@ nano .boto
 Uncomment encryption and paste the new key value for `encryption_key=`.
 
 5. Result (this is example output):
+
+![alt text](image-16.png)
 
 6. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -253,9 +276,13 @@ gsutil rewrite -k gs://$BUCKET_NAME_1/setup2.html
 nano .boto
 ```
 
+![alt text](image-17.png)
+
 3. Comment out the current decryption_key1 line by adding the # character back in.
 
 4. Result (this is example output):
+
+![alt text](image-18.png)
 
 5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -283,6 +310,10 @@ View the current lifecycle policy for the bucket
 gsutil lifecycle get gs://$BUCKET_NAME_1
 ```
 
+![alt text](image-19.png)
+
+> Note: There is no lifecycle configuration. You create one in the next steps.
+
 Create a JSON lifecycle policy file
 
 1. To create a file named life.json, run the following command:
@@ -304,6 +335,8 @@ nano life.json
 }
 ```
 
+![alt text](image-20.png)
+
 3. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
 
 Set the policy and verify
@@ -320,6 +353,8 @@ gsutil lifecycle set life.json gs://$BUCKET_NAME_1
 gsutil lifecycle get gs://$BUCKET_NAME_1
 ```
 
+![alt text](image-21.png)
+
 ### 6. Enable versioning
 
 View the versioning status for the bucket and enable versioning
@@ -329,6 +364,8 @@ View the versioning status for the bucket and enable versioning
 ```bash
 gsutil versioning get gs://$BUCKET_NAME_1
 ```
+
+> Note: The Suspended policy means that it is not enabled.
 
 2. To enable versioning, run the following command:
 
@@ -341,6 +378,8 @@ gsutil versioning set on gs://$BUCKET_NAME_1
 ```bash
 gsutil versioning get gs://$BUCKET_NAME_1
 ```
+
+![alt text](image-22.png)
 
 Create several versions of the sample file in the bucket
 
@@ -382,6 +421,8 @@ nano setup.html
 gcloud storage cp -v setup.html gs://$BUCKET_NAME_1
 ```
 
+![alt text](image-23.png)
+
 List all versions of the file
 
 1. To list all versions of the file, run the following command:
@@ -391,6 +432,8 @@ gcloud storage ls -a gs://$BUCKET_NAME_1/setup.html
 ```
 
 2. Highlight and copy the name of the oldest version of the file (the first listed), referred to as [VERSION_NAME] in the next step.
+
+> Note: Make sure to copy the full path of the file, starting with `gs://`
 
 3. Store the version value in the environment variable [VERSION_NAME].
 
@@ -405,6 +448,8 @@ echo $VERSION_NAME
 ```
 
 5. Result (this is example output):
+
+![alt text](image-24.png)
 
 Download the oldest, original version of the file and verify recovery
 
@@ -421,6 +466,10 @@ ls -al setup.html
 
 ls -al recovered.txt
 ```
+
+![alt text](image-25.png)
+
+> Note: You have recovered the original file from the backup version. Notice that the original is bigger than the current version because you deleted lines.
 
 ### 7. Synchronize a directory to a bucket
 
@@ -441,6 +490,8 @@ cp setup.html firstlevel/secondlevel
 gsutil rsync -r ./firstlevel gs://$BUCKET_NAME_1/firstlevel
 ```
 
+![alt text](image-26.png)
+
 Examine the results
 
 1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click
@@ -450,11 +501,15 @@ Examine the results
 
 3. Click on /firstlevel and then on /secondlevel.
 
+![alt text](image-27.png)
+
 4. Compare what you see in the Cloud Console with the results of the following command:
 
 ```bash
 gcloud storage ls -r gs://$BUCKET_NAME_1/firstlevel
 ```
+
+![alt text](image-28.png)
 
 5. Exit Cloud Shell:
 
@@ -469,6 +524,8 @@ Switch to the second project
 1. Open a new incognito tab.
 
 2. Navigate to console.cloud.google.com to open a Cloud Console.
+
+![alt text](image-29.png)
 
 3. Click the project selector dropdown in the title bar.
 
@@ -494,6 +551,14 @@ Prepare the bucket
 4. Note the bucket name. It will be referred to as [BUCKET_NAME_2] in the following steps.
 
 5. Click Create.
+
+![alt text](image-30.png)
+
+![alt text](image-31.png)
+
+![alt text](image-32.png)
+
+![alt text](image-33.png)
 
 Upload a text file to the bucket
 
