@@ -32,6 +32,8 @@ Create a table and import
 
 1. Click on the View actions icon next to your billing_dataset dataset, and click Open and then click Create Table to create a new table.
 
+![alt text](image-3.png)
+
 2. For Source, specify the following, and leave the remaining settings as their defaults:
 
 | Property                    | Value                |
@@ -49,13 +51,19 @@ Create a table and import
 
 4. Click Create Table. After the job is completed, the table appears below the dataset in the left pane.
 
+![alt text](image-4.png)
+
 ### 2. Examine the table
 
 1. Click sampleinfotable.
 
 2. Click Details. As you can see in Number of Rows
 
+![alt text](image-5.png)
+
 3. Click Preview tab.
+
+![alt text](image-6.png)
 
 ### 3. Compose a simple query
 
@@ -69,6 +77,8 @@ WHERE Cost > 0
 ```
 
 3. Click Run.
+
+![alt text](image-7.png)
 
 ### 4. Analyze a large billing dataset with SQL
 
