@@ -22,6 +22,12 @@ Create a Cloud Storage bucket
 
 5. Click Create.
 
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
 Download a sample file using CURL and make two copies
 
 1. In the Cloud Console, click Activate Cloud Shell (Cloud Shell).
@@ -40,6 +46,8 @@ export BUCKET_NAME_1=<enter bucket name 1 here>
 echo $BUCKET_NAME_1
 ```
 
+![alt text](image-3.png)
+
 5. Run the following command to download a sample file (this sample file is a publicly available Hadoop documentation HTML file):
 
 ```bash
@@ -55,6 +63,8 @@ ClusterSetup.html > setup.html
 cp setup.html setup2.html
 cp setup.html setup3.html
 ```
+
+![alt text](image-4.png)
 
 ### 2. Access control lists (ACLs)
 
@@ -73,6 +83,8 @@ gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl.txt
 cat acl.txt
 ```
 
+![alt text](image-5.png)
+
 3. To set the access list to private and verify the results, run the following commands:
 
 ```bash
@@ -88,6 +100,8 @@ gsutil acl ch -u AllUsers:R gs://$BUCKET_NAME_1/setup.html
 gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl3.txt
 cat acl3.txt
 ```
+
+![alt text](image-6.png)
 
 Examine the file in the Cloud Console
 
