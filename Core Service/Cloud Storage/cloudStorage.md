@@ -740,11 +740,25 @@ Modify role
 
 2. In the Cloud Console, on the Navigation menu (Navigation menu icon), click IAM & admin > IAM.
 
+![alt text](image-52.png)
+
 3. Click the pencil icon for the cross-project-storage service account (You might have to scroll to the right to see this icon).
+
+![alt text](image-53.png)
 
 4. Click on the Storage Object Viewer role, and then click Cloud Storage > Storage Object Admin.
 
+![alt text](image-54.png)
+
 5. Click Save. If you don't click Save, the change will not be made.
+
+Before :
+
+![alt text](image-53.png)
+
+After :
+
+![alt text](image-55.png)
 
 Verify changed access
 
