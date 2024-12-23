@@ -566,29 +566,45 @@ Upload a text file to the bucket
 
 2. Note the file name (referred to as [FILE_NAME]); you will use it later.
 
+![alt text](image-34.png)
+
 Create an IAM Service Account
 
 1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click IAM & admin > Service accounts.
 
+![alt text](image-35.png)
+
 2. Click Create service account.
 
-3. On Service account details page, specify the Service account name as cross-project-storage.
+![alt text](image-36.png)
+
+3. On Service account details page, specify the Service account name as `cross-project-storage`.
+
+![alt text](image-37.png)
 
 4. Click Create and Continue.
 
-5. On the Service account permissions page, specify the role as Cloud Storage > Storage Object Viewer.
+5. On the Service account permissions page, specify the role as `Cloud Storage` > `Storage Object Viewer`.
+
+![alt text](image-38.png)
 
 6. Click Continue and then Done.
 
-7. Click the cross-project-storage service account to add the JSON key.
+7. Click the `cross-project-storage` service account to add the JSON key.
 
-8. In Keys tab, click Add Key dropdown and select Create new key.
+8. In Keys tab, click `Add Key` dropdown and select `Create new key`.
 
 9. Select JSON as the key type and click Create. A JSON key file will be downloaded. You will need to find this key file and upload it in into the VM in a later step.
 
+![alt text](image-40.png)
+
+![alt text](image-39.png)
+
 10. Click Close.
 
-11. On your hard drive, rename the JSON key file to credentials.json.
+11. On your hard drive, rename the JSON key file to `credentials.json`.
+
+![alt text](image-41.png)
 
 12. In the upper pane, switch back to [PROJECT_ID_1].
 
@@ -608,15 +624,25 @@ Create a VM
 | Series       | E2                      |
 | Machine type | e2-medium               |
 
+![alt text](image-42.png)
+
+![alt text](image-43.png)
+
 4. Click OS and storage.
 
 5. If the Image shown is not Debian GNU/Linux 12 (bookworm), click Change and select Debian GNU/Linux 12 (bookworm), and then click Select.
+
+![alt text](image-44.png)
 
 6. Click Create.
 
 SSH to the VM
 
 1. For crossproject, click SSH to launch a terminal and connect.
+
+![alt text](image-45.png)
+
+> Note: If the message appears like `Connection via Cloud Identity-Aware Proxy Failed` then click `Connect without Identity-Aware Proxy`.
 
 2. Store [BUCKET_NAME_2] in an environment variable:
 
@@ -650,11 +676,15 @@ gcloud storage ls gs://$BUCKET_NAME_2/
 
 7. Result (this is example output):
 
+![alt text](image-46.png)
+
 Authorize the VM
 
 1. To upload credentials.json through the SSH VM terminal, click on the up arrow icon in the upper-right corner, and then click `Upload file`.
 
 2. Select credentials.json and upload it.
+
+![alt text](image-47.png)
 
 3. Click Close in the File Transfer window.
 
@@ -666,11 +696,19 @@ ls
 
 5. Result (this is example output):
 
+![alt text](image-48.png)
+
 6. Enter the following command in the terminal to authorize the VM to use the Google Cloud API:
 
 ```bash
 gcloud auth activate-service-account --key-file credentials.json
 ```
+
+![alt text](image-49.png)
+
+![alt text](image-50.png)
+
+> NOTE : Rename file `mv <nama_file_lama> <nama_file_baru>`
 
 Verify access
 
@@ -693,6 +731,8 @@ gcloud storage cp credentials.json gs://$BUCKET_NAME_2/
 ```
 
 4. Result (this is example output):
+
+![alt text](image-51.png)
 
 Modify role
 
