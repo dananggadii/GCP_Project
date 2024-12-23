@@ -4,11 +4,13 @@
 
 Sign in to BigQuery and create a dataset
 
-1. In the Cloud Console, on the Navigation menu ( Navigation menu icon), click BigQuery.
+1. In the Cloud Console, on the Navigation menu, click BigQuery.
 
 2. If prompted, click Done.
 
 3. Click on the View actions icon next to your project ID (starts with qwiklabs-gcp) and click Create dataset.
+
+![alt text](image.png)
 
 > Note: You can export billing data directly to BigQuery as outlined in the [Export Cloud Billing data to BigQuery Guide](https://cloud.google.com/billing/docs/how-to/export-data-bigquery). However, for the purposes of this lab, a sample billing file has been prepared for you. It is located in a Cloud Storage bucket where it is accessible to your student account. You will import this billing information into a BigQuery table and examine it.
 
@@ -21,6 +23,8 @@ Sign in to BigQuery and create a dataset
 | Default maximum table age (check Enable table expiration): | 1 days (Default maximum table age) |
 
 5. Click Create Dataset. You should see billing_dataset in the left pane.
+
+![alt text](image-1.png)
 
 Create a table and import
 
