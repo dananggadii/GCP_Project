@@ -148,9 +148,13 @@ Configure notifications and finish the alerting policy
 
 1. In the left pane, click Groups.
 
+![alt text](image-29.png)
+
 2. Click + Create Group.
 
-3. Enter a name for the group. For example: VM instances
+![alt text](image-30.png)
+
+3. Enter a name for the group. For example: `VM instances`
 
 4. In the Criteria section, type nginx in the Value field below Contains.
 
@@ -158,13 +162,19 @@ Configure notifications and finish the alerting policy
 
 6. Click CREATE.
 
+![alt text](image-31.png)
+
 7. Review the dashboard Cloud Monitoring created for your group.
 
 ### 5. Uptime monitoring
 
 1. In the Monitoring tab, click on Uptime Checks.
 
+![alt text](image-33.png)
+
 2. Click + Create Uptime Check.
+
+![alt text](image-32.png)
 
 3. Specify the following, and leave the remaining settings as their defaults:
 
@@ -176,7 +186,13 @@ Configure notifications and finish the alerting policy
 | Group           | Select your group |
 | Check Frequency | 1 minute          |
 
+![alt text](image-34.png)
+
 4. Click on Continue to leave the other details to default. In Alert & Notification tab, select your Notification Channels from the dropdown.
+
+![alt text](image-35.png)
+
+![alt text](image-36.png)
 
 5. Click Continue.
 
@@ -186,10 +202,20 @@ Configure notifications and finish the alerting policy
 
 8. When you see a green check mark everything can connect. Click Create.
 
+![alt text](image-37.png)
+
+![alt text](image-38.png)
+
 ### 6. Disable the alert
 
 1. Navigate to the Alerting section.
 
+![alt text](image-39.png)
+
 2. Click view all Alert policies, on your Policies details page click on the Enabled toggle at the top of the page.
 
+![alt text](image-40.png)
+
 3. You will be asked to confirm that you want to turn off the alerting policy - click Turn Off.
+
+![alt text](image-42.png)
