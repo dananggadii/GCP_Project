@@ -420,3 +420,121 @@ Backend services direct incoming traffic to one or more attached backends. Each 
 11. Click Create.
 
 12. Click OK.
+
+#### Review and create the HTTP load balancer
+
+1. Click Review and finalize.
+
+2. Review the Backend services and Frontend.
+
+3. Click Create. Wait for the load balancer to be created.
+
+4. Click on the name of the load balancer (http-lb).
+
+5. Note the IPv4 and IPv6 addresses of the load balancer for the next task. They will be referred to as [LB_IP_v4] and [LB_IP_v6], respectively.
+
+> Note: The IPv6 address is the one in hexadecimal format.
+
+### 6. Stress test the Application Load Balancer (HTTP)
+
+#### Access the Application Load Balancer (HTTP)
+
+1. On the Google Cloud console title bar, click Activate Cloud Shell (Activate Cloud Shell icon).
+
+2. If prompted, click Continue.
+
+3. To check the status of the load balancer, run the following command, replace [LB_IP_v4] with the IPv4 address of the load balancer:
+
+```bash
+LB_IP=[LB_IP_v4]
+while [ -z "$RESULT" ] ;
+do
+  echo "Waiting for Load Balancer";
+  sleep 5;
+  RESULT=$(curl -m1 -s $LB_IP | grep Apache);
+done
+```
+
+> Note: Once the load balancer is ready, the command will exit.
+
+4. Open a new tab in your browser and navigate to http://[LB_IP_v4]. Make sure to replace [LB_IP_v4] with the IPv4 address of the load balancer.
+
+> Note: If you get a pop-up as EXTERNAL_IP doesn’t support a secure connection click Continue to site
+
+#### Stress test the Application Load Balancer (HTTP)
+
+Create a new VM to simulate a load on the Application Load Balancer (HTTP). Then determine whether traffic is balanced across both backends when the load is high.
+
+1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > VM instances.
+
+2. Click Create instance.
+
+3. Specify the following, and leave the remaining settings as their defaults:
+
+| Property | Value (type value or select option as specified) |
+| -------- | ------------------------------------------------ |
+| Name     | stress-test                                      |
+| Region   | A region different but closer to Region 1        |
+| Zone     | A zone from the region                           |
+
+4. For Series, select E2.
+
+5. For Machine type, select e2-micro (2 vCPU, 1 core, 1 GB memory).
+
+> Note: Because a region in US is closer to Region 1 than to notus-1, traffic should be forwarded only to us-1-mig (unless the load is too high).
+
+6. Click OS and storage, and then click Change.
+
+7. Click Custom Images.
+
+8. Click Custom Images, then for Source project for images make sure that Qwiklabs project ID is selected.
+
+9. For Image, select mywebserver.
+
+10. Click Select.
+
+11. Click Create.
+
+12. Wait for the stress-test instance to be created.
+
+13. For stress-test, click SSH to launch a terminal and connect.
+
+14. If prompted allow SSH-in-browser to connect to VMs, click Authorize.
+
+15. To create an environment variable for your load balancer IP address, run the following command:
+
+```bash
+export LB_IP=<Enter your [LB_IP_v4] here>
+```
+
+16. Verify it with echo:
+
+```bash
+echo $LB_IP
+```
+
+17. To place a load on the load balancer, run the following command:
+
+```bash
+ab -n 500000 -c 1000 http://$LB_IP/
+```
+
+18. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Network Services > Load balancing.
+
+19. Click http-lb.
+
+20. Click Monitoring.
+
+21. Monitor the Frontend Location (Total inbound traffic) between North America and the two backends for a couple of minutes.
+
+> Note: At first, traffic should just be directed to us-1-mig, but as the RPS increases, traffic is also directed to notus-1-mig. This demonstrates that by default traffic is forwarded to the closest backend, but if the load is very high, traffic can be distributed across the backends.
+
+22. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > Instance groups.
+
+23. Click on us-1-mig to open the instance group page.
+
+24. Click Monitoring to monitor the number of instances and LB capacity.
+
+25. Repeat the same for the notus-1-mig instance group.
+
+> Note: Depending on the load, you might see the backends scale to accommodate the load.
