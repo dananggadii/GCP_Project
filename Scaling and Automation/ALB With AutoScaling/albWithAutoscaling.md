@@ -187,3 +187,236 @@ Verify that the boot disk will not be deleted when the instance is deleted.
 4. Click Create.
 
 > Note: You have created a custom image that multiple identical webservers can be started from. At this point, you could delete the webserver disk.
+
+### 4. Configure an instance template and create instance groups
+
+#### Configure the instance template
+
+An instance template is an API resource that you can use to create VM instances and managed instance groups. Instance templates define the machine type, boot disk image, subnet, labels, and other instance properties.
+
+1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > Instance templates.
+
+2. Click Create Instance Template.
+
+3. For Name, type mywebserver-template.
+
+4. For Location, select Global.
+
+5. For Series, select E2.
+
+6. For Machine type > Shared-core, select e2-micro (2 vCPU, 1 core, 1 GB memory).
+
+7. For Boot disk, click Change.
+
+8. Click Custom images, for Source project for images make sure that Qwiklabs project ID is selected.
+
+9. For Image, Select mywebserver.
+
+10. Click Select.
+
+11. Click Advanced options.
+
+12. Click Networking.
+
+    - For Network tags, type allow-health-checks.
+    - For Network interfaces , click default.
+    - For External IPv4 IP dropdown, select None.
+    - Click Done.
+
+13. Click Create.
+
+#### Create the health check for managed instance groups
+
+1. On the Navigation menu, click Compute Engine > Health checks.
+
+2. Click Create health check.
+
+3. Specify the following, and leave the remaining settings as their defaults:
+
+| Property | Value             |
+| -------- | ----------------- |
+| Name     | http-health-check |
+| Protocol | TCP               |
+| Port     | 80                |
+
+4. Click Create.
+
+#### Create the managed instance groups
+
+Create a managed instance group in `Region 1` and one in `Region 2`.
+
+1. On the Navigation menu, click Compute Engine > Instance groups.
+
+2. Click Create Instance Group.
+
+3. Specify the following, and leave the remaining settings as their defaults:
+
+| Property          | Value                |
+| ----------------- | -------------------- |
+| Name              | us-1-mig             |
+| Instance template | mywebserver-template |
+| Location          | Multiple zones       |
+| Region            | Region 1             |
+
+4. For Autoscaling, enter Minimum number of instances 1 and Maximum number of instances 2.
+
+5. For Autoscaling signals, click on the CPU utilization.
+
+6. For Signal type, select HTTP load balancing utilization.
+
+7. Enter Target HTTP load balancing utilization to 80.
+
+8. Click Done.
+
+9. Click Initialization period and set to 60 seconds.
+
+> Note: Managed instance groups offer autoscaling capabilities that allow you to automatically add or remove instances from a managed instance group based on increases or decreases in load. Autoscaling helps your applications gracefully handle increases in traffic and reduces cost when the need for resources is lower. You just define the autoscaling policy, and the autoscaler performs automatic scaling based on the measured load.
+
+10. In Autohealing, for health check type `http-health-check`
+
+11. Select http-health-check (TCP)
+
+12. For Initial delay, type 60. This is how long the Instance Group waits after initializing the boot-up of a VM before it tries a health check. You don't want to wait 5 minutes for this during the lab, so you set it to 1 minute.
+
+13. Click Create.
+
+14. Click Confirm in the dialog window.
+
+> Note: Wait a few minutes for the Instance Group to be created before repeating the same procedure for notus-1-mig in Region 2 Click Refresh until the Status changes to Transforming.
+
+> Note: If a warning window appears, or you see a red exclamation mark to the left of the instance group after creation stating There is no backend service attached to the instance group. Ignore this; you will configure the load balancer with a backend service in the next section of the lab.
+
+15. Click Create Instance Group.
+
+16. Specify the following, and leave the remaining settings as their defaults:
+
+| Property                                  | Value                           |
+| ----------------------------------------- | ------------------------------- |
+| Name                                      | notus-1-mig                     |
+| Instance template                         | mywebserver-template            |
+| Location                                  | Multiple zones                  |
+| Region                                    | `Region 2`                      |
+| Autoscaling > Minimum number of instances | 1                               |
+| Autoscaling > Maximum number of instances | 2                               |
+| Autoscaling signals > Signal Type         | HTTP load balancing utilization |
+| Target HTTP load balancing utilization    | 80                              |
+| Initialization period                     | 60                              |
+
+17. For Health check, select http-health-check (TCP).
+
+18. For Initial delay, type 60.
+
+19. Click Create.
+
+20. Click Confirm in the dialog window.
+
+#### Verify the backends
+
+Verify that VM instances are being created in both regions.
+
+- On the Navigation menu, click Compute Engine > VM instances.
+  Notice the instances that start with us-1-mig and notus-1-mig. These instances are part of the managed instance groups.
+
+### 5. Configure the Application Load Balancer (HTTP)
+
+Configure the Application Load Balancer (HTTP) to balance traffic between the two backends (`us-1-mig in Region 1` and `notus-1-mig in Region 2`) as illustrated in the network diagram:
+
+![alt text](image-1.png)
+
+#### Start the configuration
+
+1. On the Navigation menu, click Network Services > Load balancing.
+
+2. Click Create Load Balancer.
+
+3. For Type of load balancer, select Application Load Balancer (HTTP/HTTPS), click Next.
+
+4. For Public facing or internal, select Public facing (external), click Next.
+
+5. For Global or single region deployment, select Best for global workloads, click Next.
+
+6. For Load balancer generation, select Global external Application Load Balancer, click Next.
+
+7. For Create load balance, click Configure.
+
+8. For Load Balancer Name, type http-lb.
+
+#### Configure the frontend
+
+The host and path rules determine how your traffic will be directed. For example, you could direct video traffic to one backend and direct static traffic to another backend. However, you are not configuring the host and path rules in this lab.
+
+1. Click Frontend configuration.
+
+2. Specify the following, and leave the remaining settings as their defaults:
+
+| Property   | Value     |
+| ---------- | --------- |
+| Protocol   | HTTP      |
+| IP version | IPv4      |
+| IP address | Ephemeral |
+| Port       | 80        |
+
+3. Click Done.
+
+4. Click Add Frontend IP and Port.
+
+5. Specify the following, and leave the remaining settings as their defaults:
+
+| Property   | Value         |
+| ---------- | ------------- |
+| Protocol   | HTTP          |
+| IP version | IPv6          |
+| IP address | Auto-allocate |
+| Port       | 80            |
+
+6. Click Done.
+
+#### Configure the backend
+
+Backend services direct incoming traffic to one or more attached backends. Each backend is composed of an instance group and additional serving capacity metadata.
+
+1. Click Backend Configuration.
+
+2. Click Backend services & backend buckets > Create a Backend Service.
+
+3. Specify the following, and leave the remaining settings as their defaults:
+
+| Property       | Value          |
+| -------------- | -------------- |
+| Name           | http-backend   |
+| Backend type   | Instance group |
+| Instance group | us-1-mig       |
+| Port numbers   | 80             |
+| Balancing mode | Rate           |
+| Maximum RPS    | 50             |
+| Capacity       | 100            |
+
+> Note: This configuration means that the load balancer attempts to keep each instance of us-1-mig at or below 50 requests per second (RPS).
+
+4. Click Done.
+
+5. Click Add Backend.
+
+6. Specify the following, and leave the remaining settings as their defaults:
+
+| Property                    | Value (select option as specified) |
+| --------------------------- | ---------------------------------- |
+| Instance group              | notus-1-mig                        |
+| Port numbers                | 80                                 |
+| Balancing mode              | Utilization                        |
+| Maximum backend utilization | 80                                 |
+| Capacity                    | 100                                |
+
+> Note: This configuration means that the load balancer attempts to keep each instance of notus-1-mig at or below 80% CPU utilization.
+
+7. Click Done.
+
+8. For Health Check, select http-health-check.
+
+9. Click check for the Enable logging checkbox.
+
+10. Specify Sample rate as 1.
+
+11. Click Create.
+
+12. Click OK.
