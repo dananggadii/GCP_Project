@@ -12,7 +12,7 @@ Health checks determine which instances of a load balancer can receive new conne
 
 The network my-internal-app with subnet-a and subnet-b and firewall rules for RDP, SSH, and ICMP traffic have been configured for you.
 
-- In the Cloud Console, on the Navigation menu (Navigation menu icon), click VPC network > VPC networks.
+- In the Cloud Console, on the Navigation menu, click VPC network > VPC networks.
   Notice the my-internal-app network with its subnets: subnet-a and subnet-b.
 
 - Each Google Cloud project starts with the default network. In addition, the my-internal-app network has been created for you as part of your network diagram.
