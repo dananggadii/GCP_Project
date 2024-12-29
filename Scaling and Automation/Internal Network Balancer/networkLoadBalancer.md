@@ -23,10 +23,12 @@ The network my-internal-app with subnet-a and subnet-b and firewall rules for RD
 
 Create a firewall rule to allow traffic in the 10.10.0.0/16 subnet.
 
-1. On the Navigation menu (Navigation menu icon), click VPC network > Firewall.
+1. On the Navigation menu, click VPC network > Firewall.
    Notice the app-allow-icmp and app-allow-ssh-rdp firewall rules. These firewall rules have been created for you.
 
 2. Click Create Firewall Rule.
+
+![image](https://github.com/user-attachments/assets/2697fd13-4cbe-4ea4-8f84-ad4e5679ac47)
 
 3. Specify the following, and leave the remaining settings as their defaults.
 
@@ -42,6 +44,10 @@ Create a firewall rule to allow traffic in the 10.10.0.0/16 subnet.
 
 > Note: Make sure to include the /16 in the Source IPv4 ranges.
 
+![image](https://github.com/user-attachments/assets/64a3f843-49e9-4543-bfa0-bda0578f019b)
+
+![image](https://github.com/user-attachments/assets/e591435b-8d29-4248-8bce-30439df6d05a)
+
 4. Click Create.
 
 #### Create the health check rule
@@ -51,6 +57,8 @@ Create a firewall rule to allow health checks.
 1. On the Navigation menu (Navigation menu icon), click VPC network > Firewall.
 
 2. Click Create Firewall Rule.
+
+![image](https://github.com/user-attachments/assets/62e18bc2-0bea-48a3-9ab5-769000356118)
 
 3. Specify the following, and leave the remaining settings as their defaults.
 
@@ -68,6 +76,10 @@ Create a firewall rule to allow health checks.
 
 4. For tcp, check the checkbox and specify port 80.
 
+![image](https://github.com/user-attachments/assets/d7fdb428-8d55-4aaa-aa07-d3884d6115c4)
+
+![image](https://github.com/user-attachments/assets/276fe2d4-f311-4430-9cc0-1b69deba1cd5)
+
 5. Click Create.
 
 ### 2. Create a NAT configuration using Cloud Router
@@ -78,9 +90,13 @@ Create a firewall rule to allow health checks.
 
 2. On the Network service page, click Pin next to Network services.
 
+![image](https://github.com/user-attachments/assets/98a0ebde-b3c1-4bc9-8411-109ea68d5b82)
+
 3. Click Cloud NAT.
 
 4. Click Get started to configure a NAT gateway.
+
+![image](https://github.com/user-attachments/assets/dee77ab3-e01a-4ce9-8d3e-4622861fc3a6)
 
 5. Specify the following, and leave the remaining settings as their defaults.
 
@@ -90,11 +106,17 @@ Create a firewall rule to allow health checks.
 | Network      | my-internal-app                                  |
 | Region       | `Region`                                         |
 
+![image](https://github.com/user-attachments/assets/523b6fd0-9588-4dbe-9650-ad35e152d1e8)
+
 6. Click Cloud Router, and select Create new router.
 
-7. For Name, type nat-router-Region.
+![image](https://github.com/user-attachments/assets/4497ddf7-4785-49fe-ae40-404e1e987243)
+
+7. For Name, type nat-router-`Region`.
 
 8. Click Create.
+
+![image](https://github.com/user-attachments/assets/5427e591-f462-40af-99a0-4bf5ceeae65e)
 
 9. In Create Cloud NAT gateway, click Create.
 
@@ -112,6 +134,7 @@ Create a firewall rule to allow health checks.
 ```bash
 sudo google_metadata_script_runner startup
 ```
+
 
 5. Repeat the previous steps for instance-group-2.
 
