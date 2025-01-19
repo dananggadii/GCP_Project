@@ -12,7 +12,7 @@
 
 5. For Region and Zone select `region_name` and `zone_name` respectively.
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 6. For Machine configuration, select Series as E2.
 
@@ -24,7 +24,7 @@
 
 10. For Machine type, click e2-medium (2 vCPUs, 4 GB memory).
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 11. Click Advanced options.
 
@@ -38,7 +38,7 @@
 
 16. Leave the remaining settings as their defaults, and click Create. Wait until the new VM is created.
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
 ### 2. Create a Windows virtual machine
 
@@ -58,23 +58,23 @@
 | Boot disk      | Windows Server 2016 Datacenter Core |
 | Boot disk type | SSD persistent disk                 |
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
 4. Click Select.
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 5. For Firewall, enable Allow HTTP traffic and Allow HTTPS traffic.
 
 6. Click Create.
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 > Note: Installing an RDP client on your local machine is outside the scope of this lab and of the class. For this reason, you will not be connecting to the Windows VM during this lab. However, you will step through the usual procedures up to the point of requiring the RDP client. Instructions for connecting to Windows VMs are in the [Connecting to Windows VMs Guide](https://cloud.google.com/compute/docs/instances/connecting-to-windows?hl=id).
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
 Set the password for the VM
 
@@ -82,11 +82,11 @@ Set the password for the VM
 
 2. You don't have a valid password for this Windows VM: you cannot log in to the Windows VM without a password. Click Set Windows password.
 
-![alt text](image-8.png)
+![alt text](image/image-8.png)
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
 3. Click Set.
 
@@ -99,11 +99,11 @@ Before connecting using Desktop IAP, ensure the following prerequisites are met:
 - You have configured the VPC to [allow IAP traffic to the VM instance](https://cloud.google.com/iap/docs/using-tcp-forwarding?hl=id#create-firewall-rule).
 - You have downloaded and installed [IAP Desktop on your local computer](https://googlecloudplatform.github.io/iap-desktop/?utm_source=cloud.google.com).
 
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
-![alt text](image-13.png)
+![alt text](image/image-13.png)
 
-![alt text](image-14.png)
+![alt text](image/image-14.png)
 
 To connect to a VM instance using Desktop IAP, perform the following steps:
 
@@ -113,8 +113,8 @@ To connect to a VM instance using Desktop IAP, perform the following steps:
 
 - In the Project Explorer window , right-click the VM instance you want to connect to, and then select Connect
 
-![alt text](image-15.png)
+![alt text](image/image-15.png)
 
-![alt text](image-17.png)
+![alt text](image/image-17.png)
 
-![alt text](image-19.png)
+![alt text](image/image-19.png)
