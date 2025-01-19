@@ -22,11 +22,11 @@ Create a Cloud Storage bucket
 
 5. Click Create.
 
-![alt text](image.png)
+![alt text](image/image.png)
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
 Download a sample file using CURL and make two copies
 
@@ -46,7 +46,7 @@ export BUCKET_NAME_1=<enter bucket name 1 here>
 echo $BUCKET_NAME_1
 ```
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 5. Run the following command to download a sample file (this sample file is a publicly available Hadoop documentation HTML file):
 
@@ -64,7 +64,7 @@ cp setup.html setup2.html
 cp setup.html setup3.html
 ```
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 ### 2. Access control lists (ACLs)
 
@@ -83,7 +83,7 @@ gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl.txt
 cat acl.txt
 ```
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
 3. To set the access list to private and verify the results, run the following commands:
 
@@ -101,7 +101,7 @@ gsutil acl get gs://$BUCKET_NAME_1/setup.html  > acl3.txt
 cat acl3.txt
 ```
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
 Examine the file in the Cloud Console
 
@@ -111,7 +111,7 @@ Examine the file in the Cloud Console
 
 3. Verify that for file setup.html, Public access has a Public link available.
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
 Delete the local file and copy back from Cloud Storage
 
@@ -135,7 +135,7 @@ ls
 gcloud storage cp gs://$BUCKET_NAME_1/setup.html setup.html
 ```
 
-![alt text](image-8.png)
+![alt text](image/image-8.png)
 
 ### 3. Customer-supplied encryption keys (CSEK)
 
@@ -149,7 +149,7 @@ python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
 
 2. Result (this is example output):
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
 3. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of ``
 
@@ -165,7 +165,7 @@ nano .boto
 > Note: If the .boto file is empty, close the nano editor with Ctrl+X and generate a new .boto file using the `gsutil config -n` command. Then, try opening the file again with the above commands.
 > If the .boto file is still empty, you might have to locate it using the `gsutil version -l` command.
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
 2. Locate the line with `#encryption_key=`
 
@@ -173,7 +173,7 @@ nano .boto
 
 Example (this is an example):
 
-![alt text](image-11.png)
+![alt text](image/image-11.png)
 
 4. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -186,13 +186,13 @@ gsutil cp setup2.html gs://$BUCKET_NAME_1/
 gsutil cp setup3.html gs://$BUCKET_NAME_1/
 ```
 
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
 2. Return to the Cloud Console.
 
 3. Click [BUCKET_NAME_1]. Both setup2.html and setup3.html files show that they are customer-encrypted.
 
-![alt text](image-13.png)
+![alt text](image/image-13.png)
 
 Delete local files, copy new files, and verify encryption
 
@@ -232,7 +232,7 @@ nano .boto
 
 4. Result (this is example output):
 
-![alt text](image-14.png)
+![alt text](image/image-14.png)
 
 5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -246,7 +246,7 @@ python3 -c 'import base64; import os; print(base64.encodebytes(os.urandom(32)))'
 
 2. Copy the value of the generated key excluding b' and \n' from the command output. Key should be in form of `tmxElCaabWvJqR7uXEWQF39DhWTcDvChzuCmpHe6sb0=`.
 
-![alt text](image-15.png)
+![alt text](image/image-15.png)
 
 3. To open the boto file, run the following command:
 
@@ -258,7 +258,7 @@ Uncomment encryption and paste the new key value for `encryption_key=`.
 
 5. Result (this is example output):
 
-![alt text](image-16.png)
+![alt text](image/image-16.png)
 
 6. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -276,13 +276,13 @@ gsutil rewrite -k gs://$BUCKET_NAME_1/setup2.html
 nano .boto
 ```
 
-![alt text](image-17.png)
+![alt text](image/image-17.png)
 
 3. Comment out the current decryption_key1 line by adding the # character back in.
 
 4. Result (this is example output):
 
-![alt text](image-18.png)
+![alt text](image/image-18.png)
 
 5. Press Ctrl+O, ENTER to save the boto file, and then press Ctrl+X to exit nano.
 
@@ -310,7 +310,7 @@ View the current lifecycle policy for the bucket
 gsutil lifecycle get gs://$BUCKET_NAME_1
 ```
 
-![alt text](image-19.png)
+![alt text](image/image-19.png)
 
 > Note: There is no lifecycle configuration. You create one in the next steps.
 
@@ -335,7 +335,7 @@ nano life.json
 }
 ```
 
-![alt text](image-20.png)
+![alt text](image/image-20.png)
 
 3. Press Ctrl+O, ENTER to save the file, and then press Ctrl+X to exit nano.
 
@@ -353,7 +353,7 @@ gsutil lifecycle set life.json gs://$BUCKET_NAME_1
 gsutil lifecycle get gs://$BUCKET_NAME_1
 ```
 
-![alt text](image-21.png)
+![alt text](image/image-21.png)
 
 ### 6. Enable versioning
 
@@ -379,7 +379,7 @@ gsutil versioning set on gs://$BUCKET_NAME_1
 gsutil versioning get gs://$BUCKET_NAME_1
 ```
 
-![alt text](image-22.png)
+![alt text](image/image-22.png)
 
 Create several versions of the sample file in the bucket
 
@@ -421,7 +421,7 @@ nano setup.html
 gcloud storage cp -v setup.html gs://$BUCKET_NAME_1
 ```
 
-![alt text](image-23.png)
+![alt text](image/image-23.png)
 
 List all versions of the file
 
@@ -449,7 +449,7 @@ echo $VERSION_NAME
 
 5. Result (this is example output):
 
-![alt text](image-24.png)
+![alt text](image/image-24.png)
 
 Download the oldest, original version of the file and verify recovery
 
@@ -467,7 +467,7 @@ ls -al setup.html
 ls -al recovered.txt
 ```
 
-![alt text](image-25.png)
+![alt text](image/image-25.png)
 
 > Note: You have recovered the original file from the backup version. Notice that the original is bigger than the current version because you deleted lines.
 
@@ -490,7 +490,7 @@ cp setup.html firstlevel/secondlevel
 gsutil rsync -r ./firstlevel gs://$BUCKET_NAME_1/firstlevel
 ```
 
-![alt text](image-26.png)
+![alt text](image/image-26.png)
 
 Examine the results
 
@@ -501,7 +501,7 @@ Examine the results
 
 3. Click on /firstlevel and then on /secondlevel.
 
-![alt text](image-27.png)
+![alt text](image/image-27.png)
 
 4. Compare what you see in the Cloud Console with the results of the following command:
 
@@ -509,7 +509,7 @@ Examine the results
 gcloud storage ls -r gs://$BUCKET_NAME_1/firstlevel
 ```
 
-![alt text](image-28.png)
+![alt text](image/image-28.png)
 
 5. Exit Cloud Shell:
 
@@ -525,7 +525,7 @@ Switch to the second project
 
 2. Navigate to console.cloud.google.com to open a Cloud Console.
 
-![alt text](image-29.png)
+![alt text](image/image-29.png)
 
 3. Click the project selector dropdown in the title bar.
 
@@ -552,13 +552,13 @@ Prepare the bucket
 
 5. Click Create.
 
-![alt text](image-30.png)
+![alt text](image/image-30.png)
 
-![alt text](image-31.png)
+![alt text](image/image-31.png)
 
-![alt text](image-32.png)
+![alt text](image/image-32.png)
 
-![alt text](image-33.png)
+![alt text](image/image-33.png)
 
 Upload a text file to the bucket
 
@@ -566,27 +566,27 @@ Upload a text file to the bucket
 
 2. Note the file name (referred to as [FILE_NAME]); you will use it later.
 
-![alt text](image-34.png)
+![alt text](image/image-34.png)
 
 Create an IAM Service Account
 
 1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click IAM & admin > Service accounts.
 
-![alt text](image-35.png)
+![alt text](image/image-35.png)
 
 2. Click Create service account.
 
-![alt text](image-36.png)
+![alt text](image/image-36.png)
 
 3. On Service account details page, specify the Service account name as `cross-project-storage`.
 
-![alt text](image-37.png)
+![alt text](image/image-37.png)
 
 4. Click Create and Continue.
 
 5. On the Service account permissions page, specify the role as `Cloud Storage` > `Storage Object Viewer`.
 
-![alt text](image-38.png)
+![alt text](image/image-38.png)
 
 6. Click Continue and then Done.
 
@@ -596,15 +596,15 @@ Create an IAM Service Account
 
 9. Select JSON as the key type and click Create. A JSON key file will be downloaded. You will need to find this key file and upload it in into the VM in a later step.
 
-![alt text](image-40.png)
+![alt text](image/image-40.png)
 
-![alt text](image-39.png)
+![alt text](image/image-39.png)
 
 10. Click Close.
 
 11. On your hard drive, rename the JSON key file to `credentials.json`.
 
-![alt text](image-41.png)
+![alt text](image/image-41.png)
 
 12. In the upper pane, switch back to [PROJECT_ID_1].
 
@@ -624,15 +624,15 @@ Create a VM
 | Series       | E2                      |
 | Machine type | e2-medium               |
 
-![alt text](image-42.png)
+![alt text](image/image-42.png)
 
-![alt text](image-43.png)
+![alt text](image/image-43.png)
 
 4. Click OS and storage.
 
 5. If the Image shown is not Debian GNU/Linux 12 (bookworm), click Change and select Debian GNU/Linux 12 (bookworm), and then click Select.
 
-![alt text](image-44.png)
+![alt text](image/image-44.png)
 
 6. Click Create.
 
@@ -640,7 +640,7 @@ SSH to the VM
 
 1. For crossproject, click SSH to launch a terminal and connect.
 
-![alt text](image-45.png)
+![alt text](image/image-45.png)
 
 > Note: If the message appears like `Connection via Cloud Identity-Aware Proxy Failed` then click `Connect without Identity-Aware Proxy`.
 
@@ -676,7 +676,7 @@ gcloud storage ls gs://$BUCKET_NAME_2/
 
 7. Result (this is example output):
 
-![alt text](image-46.png)
+![alt text](image/image-46.png)
 
 Authorize the VM
 
@@ -684,7 +684,7 @@ Authorize the VM
 
 2. Select credentials.json and upload it.
 
-![alt text](image-47.png)
+![alt text](image/image-47.png)
 
 3. Click Close in the File Transfer window.
 
@@ -696,7 +696,7 @@ ls
 
 5. Result (this is example output):
 
-![alt text](image-48.png)
+![alt text](image/image-48.png)
 
 6. Enter the following command in the terminal to authorize the VM to use the Google Cloud API:
 
@@ -704,9 +704,9 @@ ls
 gcloud auth activate-service-account --key-file credentials.json
 ```
 
-![alt text](image-49.png)
+![alt text](image/image-49.png)
 
-![alt text](image-50.png)
+![alt text](image/image-50.png)
 
 > NOTE : Rename file `mv <nama_file_lama> <nama_file_baru>`
 
@@ -732,7 +732,7 @@ gcloud storage cp credentials.json gs://$BUCKET_NAME_2/
 
 4. Result (this is example output):
 
-![alt text](image-51.png)
+![alt text](image/image-51.png)
 
 Modify role
 
@@ -740,25 +740,25 @@ Modify role
 
 2. In the Cloud Console, on the Navigation menu (Navigation menu icon), click IAM & admin > IAM.
 
-![alt text](image-52.png)
+![alt text](image/image-52.png)
 
 3. Click the pencil icon for the cross-project-storage service account (You might have to scroll to the right to see this icon).
 
-![alt text](image-53.png)
+![alt text](image/image-53.png)
 
 4. Click on the Storage Object Viewer role, and then click Cloud Storage > Storage Object Admin.
 
-![alt text](image-54.png)
+![alt text](image/image-54.png)
 
 5. Click Save. If you don't click Save, the change will not be made.
 
 Before :
 
-![alt text](image-53.png)
+![alt text](image/image-53.png)
 
 After :
 
-![alt text](image-55.png)
+![alt text](image/image-55.png)
 
 Verify changed access
 
@@ -772,4 +772,4 @@ gcloud storage cp credentials.json gs://$BUCKET_NAME_2/
 
 3. Result (this is example output):
 
-![alt text](image-56.png)
+![alt text](image/image-56.png)
