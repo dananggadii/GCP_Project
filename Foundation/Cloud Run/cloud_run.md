@@ -10,7 +10,7 @@ gcloud services enable run.googleapis.com
 
 2. If you are asked to authorize the use of your credentials, do so. You should then see a successful message similar to this one:
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 > Note: You can also enable the API using the APIs & Services section of the console.
 
@@ -26,7 +26,7 @@ gcloud config set compute/region "REGION"
 LOCATION="Region"
 ```
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 ### 2. Write the sample application
 
@@ -88,7 +88,7 @@ This code creates a basic web server that listens on the port defined by the POR
 
 6. Press CTRL+X, then Y, then Enter to save the index.js file
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
 > Note: You can use many other languages to get started with Cloud Run. You can find instructions for Go, Python, Java, PHP, Ruby, Shell scripts, and others from the [Quickstarts guide](https://cloud.google.com/run/docs/quickstarts).
 
@@ -101,14 +101,14 @@ nano Dockerfile
 ```
 
 ```bash
-# Use the official lightweight Node.js 12 image.
+# Use the official lightweight Node.js 12 image/image.
 # https://hub.docker.com/_/node
 FROM node:12-slim
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
 
-# Copy application dependency manifests to the container image.
+# Copy application dependency manifests to the container image/image.
 # A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
 # Copying this first prevents re-running npm install on every code change.
 COPY package*.json ./
@@ -118,7 +118,7 @@ COPY package*.json ./
 # RUN npm ci --only=production
 RUN npm install --only=production
 
-# Copy local code to the container image.
+# Copy local code to the container image/image.
 COPY . ./
 
 # Run the web service on container startup.
@@ -127,13 +127,13 @@ CMD [ "npm", "start" ]
 
 2. Press CTRL+X, then Y, then Enter to save the Dockerfile file.
 
-3. Now, build your container image using Cloud Build by running the following command from the directory containing the Dockerfile. (Note the $GOOGLE_CLOUD_PROJECT environmental variable in the command, which contains your lab's Project ID):
+3. Now, build your container image/image using Cloud Build by running the following command from the directory containing the Dockerfile. (Note the $GOOGLE_CLOUD_PROJECT environmental variable in the command, which contains your lab's Project ID):
 
 ```bash
 gcloud builds submit --tag gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld
 ```
 
-Once pushed to the registry, you will see a SUCCESS message containing the image name (gcr.io/[PROJECT-ID]/helloworld). The image is stored in Artifact Registry and can be re-used if desired.
+Once pushed to the registry, you will see a SUCCESS message containing the image/image name (gcr.io/[PROJECT-ID]/helloworld). The image/image is stored in Artifact Registry and can be re-used if desired.
 
 4. List all the container images associated with your current project using this command:
 
@@ -157,7 +157,7 @@ docker run -d -p 8080:8080 gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld
 
 7. In the Cloud Shell window, click on Web preview and select Preview on port 8080.
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 This should open a browser window showing the "Hello World!" message. You could also simply use curl localhost:8080.
 
@@ -166,7 +166,7 @@ This should open a browser window showing the "Hello World!" message. You could 
 1. Deploying your containerized application to Cloud Run is done using the following command adding your Project-ID:
 
 ```bash
-gcloud run deploy --image gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld --allow-unauthenticated --region=$LOCATION
+gcloud run deploy --image/image gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld --allow-unauthenticated --region=$LOCATION
 ```
 
 The allow-unauthenticated flag in the command above makes your service publicly accessible.
@@ -179,11 +179,11 @@ Wait a few moments until the deployment is complete.
 
 On success, the command line displays the service URL:
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 ### 5. Clean up
 
-1. You can either decide to delete your Google Cloud project to avoid incurring charges, which will stop billing for all the resources used within that project, or simply delete your helloworld image using this command :
+1. You can either decide to delete your Google Cloud project to avoid incurring charges, which will stop billing for all the resources used within that project, or simply delete your helloworld image/image using this command :
 
 ```bash
 gcloud container images delete gcr.io/$GOOGLE_CLOUD_PROJECT/helloworld
@@ -199,4 +199,4 @@ gcloud run services delete helloworld --region="REGION"
 
 4. When prompted to continue type Y, and press Enter.
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
