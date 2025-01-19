@@ -1,6 +1,6 @@
 # Automating the Deployment of Infrastructure Using Terraform
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 1. Set up Terraform and Cloud Shell
 
@@ -216,12 +216,12 @@ These properties define the zone and machine type of the instance as input varia
 ```bash
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image/image = "debian-cloud/debian-11"
       }
   }
 ```
 
-This property defines the boot disk to use the Debian 11 OS image. Because both VM instances will use the same image, you can hard-code this property in the module.
+This property defines the boot disk to use the Debian 11 OS image/image. Because both VM instances will use the same image/image, you can hard-code this property in the module.
 
 10. Add the following properties to main.tf:
 
@@ -245,7 +245,7 @@ resource "google_compute_instance" "vm_instance" {
   machine_type = "${var.instance_type}"
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image/image = "debian-cloud/debian-11"
       }
   }
   network_interface {

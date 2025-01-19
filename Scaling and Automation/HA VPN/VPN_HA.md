@@ -1,6 +1,6 @@
 # Configuring Google Cloud HA VPN
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 1. Set up a Global VPC environment
 

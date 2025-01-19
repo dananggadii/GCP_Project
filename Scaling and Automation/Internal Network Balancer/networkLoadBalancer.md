@@ -1,6 +1,6 @@
 # Configure an Internal Network Load Balancer
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 1. Configure internal traffic and health check firewall rules
 
@@ -28,7 +28,7 @@ Create a firewall rule to allow traffic in the 10.10.0.0/16 subnet.
 
 2. Click Create Firewall Rule.
 
-![image](https://github.com/user-attachments/assets/2697fd13-4cbe-4ea4-8f84-ad4e5679ac47)
+![image/image](https://github.com/user-attachments/assets/2697fd13-4cbe-4ea4-8f84-ad4e5679ac47)
 
 3. Specify the following, and leave the remaining settings as their defaults.
 
@@ -44,9 +44,9 @@ Create a firewall rule to allow traffic in the 10.10.0.0/16 subnet.
 
 > Note: Make sure to include the /16 in the Source IPv4 ranges.
 
-![image](https://github.com/user-attachments/assets/64a3f843-49e9-4543-bfa0-bda0578f019b)
+![image/image](https://github.com/user-attachments/assets/64a3f843-49e9-4543-bfa0-bda0578f019b)
 
-![image](https://github.com/user-attachments/assets/e591435b-8d29-4248-8bce-30439df6d05a)
+![image/image](https://github.com/user-attachments/assets/e591435b-8d29-4248-8bce-30439df6d05a)
 
 4. Click Create.
 
@@ -58,7 +58,7 @@ Create a firewall rule to allow health checks.
 
 2. Click Create Firewall Rule.
 
-![image](https://github.com/user-attachments/assets/62e18bc2-0bea-48a3-9ab5-769000356118)
+![image/image](https://github.com/user-attachments/assets/62e18bc2-0bea-48a3-9ab5-769000356118)
 
 3. Specify the following, and leave the remaining settings as their defaults.
 
@@ -76,9 +76,9 @@ Create a firewall rule to allow health checks.
 
 4. For tcp, check the checkbox and specify port 80.
 
-![image](https://github.com/user-attachments/assets/d7fdb428-8d55-4aaa-aa07-d3884d6115c4)
+![image/image](https://github.com/user-attachments/assets/d7fdb428-8d55-4aaa-aa07-d3884d6115c4)
 
-![image](https://github.com/user-attachments/assets/276fe2d4-f311-4430-9cc0-1b69deba1cd5)
+![image/image](https://github.com/user-attachments/assets/276fe2d4-f311-4430-9cc0-1b69deba1cd5)
 
 5. Click Create.
 
@@ -90,13 +90,13 @@ Create a firewall rule to allow health checks.
 
 2. On the Network service page, click Pin next to Network services.
 
-![image](https://github.com/user-attachments/assets/98a0ebde-b3c1-4bc9-8411-109ea68d5b82)
+![image/image](https://github.com/user-attachments/assets/98a0ebde-b3c1-4bc9-8411-109ea68d5b82)
 
 3. Click Cloud NAT.
 
 4. Click Get started to configure a NAT gateway.
 
-![image](https://github.com/user-attachments/assets/dee77ab3-e01a-4ce9-8d3e-4622861fc3a6)
+![image/image](https://github.com/user-attachments/assets/dee77ab3-e01a-4ce9-8d3e-4622861fc3a6)
 
 5. Specify the following, and leave the remaining settings as their defaults.
 
@@ -106,17 +106,17 @@ Create a firewall rule to allow health checks.
 | Network      | my-internal-app                                  |
 | Region       | `Region`                                         |
 
-![image](https://github.com/user-attachments/assets/523b6fd0-9588-4dbe-9650-ad35e152d1e8)
+![image/image](https://github.com/user-attachments/assets/523b6fd0-9588-4dbe-9650-ad35e152d1e8)
 
 6. Click Cloud Router, and select Create new router.
 
-![image](https://github.com/user-attachments/assets/4497ddf7-4785-49fe-ae40-404e1e987243)
+![image/image](https://github.com/user-attachments/assets/4497ddf7-4785-49fe-ae40-404e1e987243)
 
 7. For Name, type nat-router-`Region`.
 
 8. Click Create.
 
-![image](https://github.com/user-attachments/assets/5427e591-f462-40af-99a0-4bf5ceeae65e)
+![image/image](https://github.com/user-attachments/assets/5427e591-f462-40af-99a0-4bf5ceeae65e)
 
 9. In Create Cloud NAT gateway, click Create.
 
@@ -135,11 +135,11 @@ Create a firewall rule to allow health checks.
 sudo google_metadata_script_runner startup
 ```
 
-![image](https://github.com/user-attachments/assets/c18f7b16-56c8-4755-a3b0-edc37e9b0a74)
+![image/image](https://github.com/user-attachments/assets/c18f7b16-56c8-4755-a3b0-edc37e9b0a74)
 
 5. Repeat the previous steps for instance-group-2.
 
-![image](https://github.com/user-attachments/assets/fa0f2476-a50f-448f-8c90-afca50eef2b3)
+![image/image](https://github.com/user-attachments/assets/fa0f2476-a50f-448f-8c90-afca50eef2b3)
 
 6. Wait for both startup scripts to finish executing, then close the SSH terminal to each VM. The output of the startup script should state the following:
 
@@ -163,15 +163,15 @@ Verify that VM instances are being created in both subnets and create a utility 
 | Series       | E2                              |
 | Machine type | e2-medium (2 vCPU, 4 GB memory) |
 
-![image](https://github.com/user-attachments/assets/71ce121e-6b1b-480f-a92a-7e9c528868b8)
+![image/image](https://github.com/user-attachments/assets/71ce121e-6b1b-480f-a92a-7e9c528868b8)
 
-![image](https://github.com/user-attachments/assets/9fbf3e01-8de7-4a07-a1fc-26b355d05506)
+![image/image](https://github.com/user-attachments/assets/9fbf3e01-8de7-4a07-a1fc-26b355d05506)
 
 4. Click OS and storage.
 
 5. If the Image shown is not Debian GNU/Linux 12 (bookworm), click Change and select Debian GNU/Linux 12 (bookworm), and then click Select.
 
-![image](https://github.com/user-attachments/assets/84b76995-3252-4acf-a4c9-abff96b713b0)
+![image/image](https://github.com/user-attachments/assets/84b76995-3252-4acf-a4c9-abff96b713b0)
 
 6. Click Networking.
 
@@ -189,7 +189,7 @@ Verify that VM instances are being created in both subnets and create a utility 
 
 9. Click Done.
 
-![image](https://github.com/user-attachments/assets/47679585-7585-4331-b070-ad68d0de0638)
+![image/image](https://github.com/user-attachments/assets/47679585-7585-4331-b070-ad68d0de0638)
 
 10. Click Create.
 
@@ -207,10 +207,9 @@ Verify that VM instances are being created in both subnets and create a utility 
 curl 10.10.20.2
 ```
 
-![image](https://github.com/user-attachments/assets/12bf94a5-72d7-4b2e-ac22-12c21334c5d7)
+![image/image](https://github.com/user-attachments/assets/12bf94a5-72d7-4b2e-ac22-12c21334c5d7)
 
-The output should look like this: 
-
+The output should look like this:
 
 15. To verify the welcome page for instance-group-2-xxxx, run the following command:
 
@@ -218,7 +217,7 @@ The output should look like this:
 curl 10.10.30.2
 ```
 
-![image](https://github.com/user-attachments/assets/b05fd300-6db6-4bc5-adba-3e3383559e2c)
+![image/image](https://github.com/user-attachments/assets/b05fd300-6db6-4bc5-adba-3e3383559e2c)
 
 The output should look like this.
 
@@ -232,7 +231,7 @@ exit
 
 Configure the internal Network Load Balancer to balance traffic between the two backends (`instance-group-1 in Zone 1` and `instance-group-2 in Zone 2`), as illustrated in the network diagram.
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 #### Start the configuration
 
@@ -240,23 +239,23 @@ Configure the internal Network Load Balancer to balance traffic between the two 
 
 2. Click Create load balancer.
 
-![image](https://github.com/user-attachments/assets/f424eafc-b3af-4af8-89eb-049a8f25a7d6)
+![image/image](https://github.com/user-attachments/assets/f424eafc-b3af-4af8-89eb-049a8f25a7d6)
 
 3. For Type of load balancer, select Network Load Balancer (TCP/UDP/SSL), click Next.
 
-![image](https://github.com/user-attachments/assets/6ce154c8-4816-4a08-935d-25a78bdaccac)
+![image/image](https://github.com/user-attachments/assets/6ce154c8-4816-4a08-935d-25a78bdaccac)
 
 4. For Proxy or passthrough, select Passthrough load balancer and click Next.
 
-![image](https://github.com/user-attachments/assets/3bb1f254-5d88-42fb-8896-9d66fd8401a5)
+![image/image](https://github.com/user-attachments/assets/3bb1f254-5d88-42fb-8896-9d66fd8401a5)
 
 5. For Public facing or internal, select Internal and click Next.
 
-![image](https://github.com/user-attachments/assets/502bf439-1a17-46f1-9111-70b8b41de3c1)
+![image/image](https://github.com/user-attachments/assets/502bf439-1a17-46f1-9111-70b8b41de3c1)
 
 6. For Create load balance, click Configure.
 
-![image](https://github.com/user-attachments/assets/f57471fd-fa01-4be0-97aa-b039593654e6)
+![image/image](https://github.com/user-attachments/assets/f57471fd-fa01-4be0-97aa-b039593654e6)
 
 7. For Load balancer name, type my-ilb.
 
@@ -264,7 +263,7 @@ Configure the internal Network Load Balancer to balance traffic between the two 
 
 9. For Network, select my-internal-app from the dropdown.
 
-![image](https://github.com/user-attachments/assets/0a966f63-a347-45c2-b463-0ac0edc124f1)
+![image/image](https://github.com/user-attachments/assets/0a966f63-a347-45c2-b463-0ac0edc124f1)
 
 #### Configure the regional backend service
 
@@ -280,9 +279,9 @@ The backend service monitors instance groups and prevents them from exceeding co
 
 3. Click Done.
 
-![image](https://github.com/user-attachments/assets/6e163e9f-bc9c-4493-9098-661c09a43f62)
+![image/image](https://github.com/user-attachments/assets/6e163e9f-bc9c-4493-9098-661c09a43f62)
 
-![image](https://github.com/user-attachments/assets/1f6dad58-a1ca-4f7c-98d7-31101a81996a)
+![image/image](https://github.com/user-attachments/assets/1f6dad58-a1ca-4f7c-98d7-31101a81996a)
 
 4. Click Add a backend.
 
@@ -290,7 +289,7 @@ The backend service monitors instance groups and prevents them from exceeding co
 
 6. Click Done.
 
-![image](https://github.com/user-attachments/assets/30b33519-bdf3-4f50-b0b8-64efb695dc28)
+![image/image](https://github.com/user-attachments/assets/30b33519-bdf3-4f50-b0b8-64efb695dc28)
 
 7. For Health Check, select Create a health check.
 
@@ -306,9 +305,9 @@ The backend service monitors instance groups and prevents them from exceeding co
 | Healthy threshold   | 2                   |
 | Unhealthy threshold | 3                   |
 
-![image](https://github.com/user-attachments/assets/a80c4508-013f-4e75-b87b-f7ecaa1eff0b)
+![image/image](https://github.com/user-attachments/assets/a80c4508-013f-4e75-b87b-f7ecaa1eff0b)
 
-![image](https://github.com/user-attachments/assets/af073112-d71f-4182-af0f-4ed53004847e)
+![image/image](https://github.com/user-attachments/assets/af073112-d71f-4182-af0f-4ed53004847e)
 
 > Note: Health checks determine which instances can receive new connections. This HTTP health check polls instances every 10 seconds, waits up to 5 seconds for a response, and treats 2 successful or 3 failed attempts as healthy threshold or unhealthy threshold, respectively.
 
@@ -329,7 +328,7 @@ The frontend forwards traffic to the backend.
 | Subnetwork                       | subnet-b          |
 | Internal IP purpose > IP address | Create IP address |
 
-![image](https://github.com/user-attachments/assets/e4dcbfd7-464b-4fe9-84d2-4ffad4351036)
+![image/image](https://github.com/user-attachments/assets/e4dcbfd7-464b-4fe9-84d2-4ffad4351036)
 
 3. Specify the following, and leave the remaining settings as their defaults.
 
@@ -341,13 +340,13 @@ The frontend forwards traffic to the backend.
 
 4. Click Reserve.
 
-![image](https://github.com/user-attachments/assets/559d0f59-6b3e-4a56-943b-5d6582e9f20c)
+![image/image](https://github.com/user-attachments/assets/559d0f59-6b3e-4a56-943b-5d6582e9f20c)
 
 5. Under Ports, for Port number, type 80.
 
 6. Click Done.
 
-![image](https://github.com/user-attachments/assets/104915c2-d162-4040-9527-341e477b0d60)
+![image/image](https://github.com/user-attachments/assets/104915c2-d162-4040-9527-341e477b0d60)
 
 #### Review and create the internal Network Load Lalancer
 
@@ -357,7 +356,7 @@ The frontend forwards traffic to the backend.
 
 3. Click Create.
 
-![image](https://github.com/user-attachments/assets/0863728a-b742-46c1-acea-924c6ebbb66e)
+![image/image](https://github.com/user-attachments/assets/0863728a-b742-46c1-acea-924c6ebbb66e)
 
 ### 5. Test the internal Network Load Balancer
 

@@ -1,6 +1,6 @@
 # Configure an Application Load Balancer with Autoscaling
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 1. Configure a health check firewall rule
 
@@ -65,7 +65,7 @@ Create a firewall rule to allow health checks.
 
 > Note: Wait until the NAT Gateway Status changes to Running before moving onto the next task.
 
-### 3. Create a custom image for a web server
+### 3. Create a custom image/image for a web server
 
 #### Create a VM
 
@@ -128,7 +128,7 @@ The default page for the Apache2 server should be displayed.
 
 #### Set the Apache service to start at boot
 
-The software installation was successful. However, when a new VM is created using this image, the freshly booted VM does not have the Apache web server running. Use the following command to set the Apache service to automatically start on boot. Then test it to make sure it works.
+The software installation was successful. However, when a new VM is created using this image/image, the freshly booted VM does not have the Apache web server running. Use the following command to set the Apache service to automatically start on boot. Then test it to make sure it works.
 
 1. In the webserver SSH terminal, set the service to start on boot:
 
@@ -154,7 +154,7 @@ sudo service apache2 status
 
 6. The result should show Started The Apache HTTP Server.
 
-#### Prepare the disk to create a custom image
+#### Prepare the disk to create a custom image/image
 
 Verify that the boot disk will not be deleted when the instance is deleted.
 
@@ -170,11 +170,11 @@ Verify that the boot disk will not be deleted when the instance is deleted.
 
 6. In the left pane, click Disks and verify that the webserver disk exists.
 
-#### Create the custom image
+#### Create the custom image/image
 
 1. In the left pane, click Images.
 
-2. Click Create image.
+2. Click Create image/image.
 
 3. Specify the following, and leave the remaining settings as their defaults:
 
@@ -186,13 +186,13 @@ Verify that the boot disk will not be deleted when the instance is deleted.
 
 4. Click Create.
 
-> Note: You have created a custom image that multiple identical webservers can be started from. At this point, you could delete the webserver disk.
+> Note: You have created a custom image/image that multiple identical webservers can be started from. At this point, you could delete the webserver disk.
 
 ### 4. Configure an instance template and create instance groups
 
 #### Configure the instance template
 
-An instance template is an API resource that you can use to create VM instances and managed instance groups. Instance templates define the machine type, boot disk image, subnet, labels, and other instance properties.
+An instance template is an API resource that you can use to create VM instances and managed instance groups. Instance templates define the machine type, boot disk image/image, subnet, labels, and other instance properties.
 
 1. In the Cloud Console, on the Navigation menu (Navigation menu icon), click Compute Engine > Instance templates.
 
@@ -321,7 +321,7 @@ Verify that VM instances are being created in both regions.
 
 Configure the Application Load Balancer (HTTP) to balance traffic between the two backends (`us-1-mig in Region 1` and `notus-1-mig in Region 2`) as illustrated in the network diagram:
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 #### Start the configuration
 
