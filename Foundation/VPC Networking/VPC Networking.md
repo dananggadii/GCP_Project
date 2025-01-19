@@ -1,6 +1,6 @@
 # VPC Networking
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 1. Create VPC Using Cloud Console
 
@@ -24,9 +24,9 @@
 
 7. Click Create.
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
 ### 2. Create VPC Using Cloud Shell
 
@@ -52,9 +52,9 @@ gcloud compute networks subnets create privatesubnet-us --network=privatenet --r
 gcloud compute networks subnets create privatesubnet-notus --network=privatenet --region=region_name --range=172.20.0.0/20
 ```
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 6. To list the available VPC networks, run the following command:
 
@@ -62,7 +62,7 @@ gcloud compute networks subnets create privatesubnet-notus --network=privatenet 
 gcloud compute networks list
 ```
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
 7. To list the available VPC subnets (sorted by VPC network), run the following command:
 
@@ -93,11 +93,11 @@ gcloud compute networks subnets list --sort-by=NETWORK
 
 6. Click Create.
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
 ### 4. Create the firewall rules Cloud Shell
 
@@ -109,7 +109,7 @@ gcloud compute networks subnets list --sort-by=NETWORK
 gcloud compute firewall-rules create privatenet-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=privatenet --action=ALLOW --rules=icmp,tcp:22,tcp:3389 --source-ranges=0.0.0.0/0
 ```
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
 3. To list all the firewall rules (sorted by VPC network), run the following command:
 
@@ -117,7 +117,7 @@ gcloud compute firewall-rules create privatenet-allow-icmp-ssh-rdp --direction=I
 gcloud compute firewall-rules list --sort-by=NETWORK
 ```
 
-![alt text](image-11.png)
+![alt text](image/image-11.png)
 
 ### 5. Create instance using console
 
@@ -136,11 +136,11 @@ gcloud compute firewall-rules list --sort-by=NETWORK
 | Machine type | e2-micro (2 vCPU, 1 core, 1 GB memory) |
 | Boot disk    | Debian GNU/Linux 12 (bookworm)         |
 
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
-![alt text](image-13.png)
+![alt text](image/image-13.png)
 
-![alt text](image-14.png)
+![alt text](image/image-14.png)
 
 4. Click Advanced options.
 
@@ -157,7 +157,7 @@ gcloud compute firewall-rules list --sort-by=NETWORK
 
 8. Click Done.
 
-![alt text](image-15.png)
+![alt text](image/image-15.png)
 
 9. Click Create.
 
@@ -168,10 +168,10 @@ gcloud compute firewall-rules list --sort-by=NETWORK
 2. To create the privatenet-us-vm instance, run the following command:
 
 ```bash
-gcloud compute instances create vm_name --zone=zone_name --machine-type=e2-micro --subnet=subnet_name --image-family=debian-12 --image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=privatenet-us-vm
+gcloud compute instances create vm_name --zone=zone_name --machine-type=e2-micro --subnet=subnet_name --image/image-family=debian-12 --image/image-project=debian-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --boot-disk-device-name=privatenet-us-vm
 ```
 
-![alt text](image-16.png)
+![alt text](image/image-16.png)
 
 3. To list all the VM instances (sorted by zone), run the following command:
 
@@ -179,7 +179,7 @@ gcloud compute instances create vm_name --zone=zone_name --machine-type=e2-micro
 gcloud compute instances list --sort-by=ZONE
 ```
 
-![alt text](image-17.png)
+![alt text](image/image-17.png)
 
 ### 7. Test Ping
 
@@ -193,4 +193,4 @@ gcloud compute instances list --sort-by=ZONE
 ping -c 3 <Enter vm's external IP here>
 ```
 
-![alt text](image-18.png)
+![alt text](image/image-18.png)
