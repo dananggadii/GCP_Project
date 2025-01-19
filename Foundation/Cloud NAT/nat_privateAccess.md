@@ -10,7 +10,7 @@
 
 4. For Subnet creation mode, click Custom.
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 5. In New Subnet specify the following, and leave the remaining settings as their defaults:
 
@@ -22,7 +22,7 @@
 
 > Note: Don't enable Private Google access yet!
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 6. Click Done.
 
@@ -45,9 +45,9 @@
 
 11. For tcp, click the checkbox and specify port 22.
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 12. Click Create.
 
@@ -70,11 +70,11 @@
 | Machine type | e2-medium (2vCPU, 1 core, 4 GB memory) |
 | Boot disk    | Debian GNU/Linux 12 (bookworm)         |
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
 4. Click Advanced options.
 
@@ -90,9 +90,9 @@
 | Subnetwork            | subnet_name |
 | External IPv4 address | None        |
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
-![alt text](image-8.png)
+![alt text](image/image-8.png)
 
 8. Click Done.
 
@@ -112,7 +112,7 @@
 gcloud compute ssh vm-internal --zone ZONE --tunnel-through-iap
 ```
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
 4. If prompted click Authorize
 
@@ -152,7 +152,7 @@ exit
 
 5. For Private Google access, select On.
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
 6. Click Save.
 
@@ -176,7 +176,7 @@ Although vm-internal can now access certain Google APIs and services without an 
 | Network      | privatenet  |
 | Region       | region_name |
 
-![alt text](image-11.png)
+![alt text](image/image-11.png)
 
 6. For Cloud Router, select Create new router.
 
@@ -184,13 +184,13 @@ Although vm-internal can now access certain Google APIs and services without an 
 
 8. Click Create.
 
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
 9. Click Create.
 
 10. Wait for the gateway's status to change to Running.
 
-![alt text](image-13.png)
+![alt text](image/image-13.png)
 
 ### 6. Configure and view logs with Cloud NAT Logging
 
@@ -204,7 +204,7 @@ Enabling logging
 
 4. For Logging, select Translation and errors and then click Save.
 
-![alt text](image-14.png)
+![alt text](image/image-14.png)
 
 NAT logging in Cloud Logging
 
@@ -212,4 +212,4 @@ NAT logging in Cloud Logging
 
 2. This will open a new tab with Logs Explorer.
 
-![alt text](image-15.png)
+![alt text](image/image-15.png)
