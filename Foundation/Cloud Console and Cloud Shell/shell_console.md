@@ -12,9 +12,9 @@
 
 5. If prompted Public access will be prevented click Confirm.
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 ### 2. Use Cloud Shell to create a Cloud Storage bucket
 
@@ -28,13 +28,13 @@ gcloud storage buckets create gs://[BUCKET_NAME]
 
 3. If prompted, click Authorize.
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 4. In the Cloud Console, on the Navigation menu, click Cloud Storage > Buckets, or click Refresh if you are already in the Storage browser. The second bucket should be displayed in the Buckets list.
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
 > Note: You have performed equivalent actions using the Cloud Console and Cloud Shell. You created a bucket using the Cloud Console and another bucket using Cloud Shell.
 
@@ -48,7 +48,7 @@ gcloud storage buckets create gs://[BUCKET_NAME]
 
 4. In Cloud Shell, type ls to confirm that the file was uploaded.
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
 5. Copy the file into one of the buckets you created earlier in the lab. Replace [MY_FILE] with the file you uploaded and [BUCKET_NAME] with one of your bucket names:
 
@@ -56,9 +56,9 @@ gcloud storage buckets create gs://[BUCKET_NAME]
 gcloud storage cp [MY_FILE] gs://[BUCKET_NAME]
 ```
 
-![alt text](image-8.png)
+![alt text](image/image-8.png)
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
 If your filename has whitespaces, be sure to place single quotes around the filename. For example, gcloud storage cp ‘my file.txt' gs://[BUCKET_NAME]
 
@@ -80,7 +80,7 @@ INFRACLASS_REGION=[YOUR_REGION]
 echo $INFRACLASS_REGION
 ```
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
 #### Append the environment variable to a file
 
@@ -129,7 +129,7 @@ echo $INFRACLASS_PROJECT_ID
 
 8. There will be no output because the environment variable no longer exists.
 
-![alt text](image-11.png)
+![alt text](image/image-11.png)
 
 #### Modify the bash profile and create persistence
 
@@ -153,6 +153,6 @@ source infraclass/config
 echo $INFRACLASS_PROJECT_ID
 ```
 
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
 You should now see the expected value that you set in the config file.
