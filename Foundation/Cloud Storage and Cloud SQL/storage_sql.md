@@ -34,7 +34,7 @@ service apache2 restart
 
 12. Leave the remaining settings as their defaults, and click Create.
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 2. Create a Cloud Storage bucket using the gcloud storage command line
 
@@ -52,13 +52,13 @@ export LOCATION=ASIA
 gcloud storage buckets create -l $LOCATION gs://$DEVSHELL_PROJECT_ID
 ```
 
-4. Retrieve a banner image from a publicly accessible Cloud Storage location:
+4. Retrieve a banner image/image from a publicly accessible Cloud Storage location:
 
 ```bash
 gcloud storage cp gs://cloud-training/gcpfci/my-excellent-blog.png my-excellent-blog.png
 ```
 
-5. Copy the banner image to your newly created Cloud Storage bucket:
+5. Copy the banner image/image to your newly created Cloud Storage bucket:
 
 ```bash
 gcloud storage cp my-excellent-blog.png gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
@@ -70,7 +70,7 @@ gcloud storage cp my-excellent-blog.png gs://$DEVSHELL_PROJECT_ID/my-excellent-b
 gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
 ```
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 ### 3. Create the Cloud SQL instance
 
@@ -94,7 +94,7 @@ gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
 
 8. Click the name of the instance, blog-db, to open its details page.
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
 9. From the SQL instances details page, copy the Public IP address for your SQL instance to a text editor for use later in this lab.
 
@@ -106,7 +106,7 @@ gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
 
 13. Click Add to add the user account in the database.
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 14. Click Connections menu on the left-hand side, and then click Networking tab.
 
@@ -122,7 +122,7 @@ gsutil acl ch -u allUsers:R gs://$DEVSHELL_PROJECT_ID/my-excellent-blog.png
 
 The result will look like this:
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 18. Click Done to finish defining the authorized network.
 
@@ -185,13 +185,13 @@ $dbpassword = "DBPASSWORD";
 sudo service apache2 restart
 ```
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
 9. Open a new web browser tab and paste into the address bar your bloghost VM instance's external IP address followed by /index.php. The URL will look like this:
 
 When you load the page, you will see that its content includes an error message beginning with the words:
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
 10. Return to your ssh session on bloghost. Use the nano text editor to edit index.php again.
 
@@ -207,7 +207,7 @@ sudo nano index.php
 
 14. Press Ctrl+X to exit the nano text editor.
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
 15. Restart the web server:
 
@@ -217,7 +217,7 @@ sudo service apache2 restart
 
 16. Return to the web browser tab in which you opened your bloghost VM instance's external IP address. When you load the page, the following message appears:
 
-![alt text](image-8.png)
+![alt text](image/image-8.png)
 
 ### 5. Configure an application in a Compute Engine instance to use a Cloud Storage object
 
@@ -227,7 +227,7 @@ sudo service apache2 restart
 
 3. In this bucket, there is an object called my-excellent-blog.png. Copy the URL behind the link icon that appears in that object's Public access column, or behind the words "Public link" if shown.
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
 4. Return to your ssh session on your bloghost VM instance.
 
@@ -259,7 +259,7 @@ sudo nano index.php
 
 The resulting line will look like this:
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
 ```html
 <img
@@ -277,6 +277,6 @@ The resulting line will look like this:
 sudo service apache2 restart
 ```
 
-13. Return to the web browser tab in which you opened your bloghost VM instance's external IP address. When you load the page, its content now includes a banner image.
+13. Return to the web browser tab in which you opened your bloghost VM instance's external IP address. When you load the page, its content now includes a banner image/image.
 
-![alt text](image-11.png)
+![alt text](image/image-11.png)
