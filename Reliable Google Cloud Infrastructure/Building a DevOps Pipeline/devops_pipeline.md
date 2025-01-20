@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
 14. Add the following code and save the file as you did before:
 
-```html
+```python
 {% extends "layout.html" %} {% block content %}
 <div class="jumbotron">
   <div class="container">
