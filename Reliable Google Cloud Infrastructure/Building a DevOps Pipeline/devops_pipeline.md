@@ -111,13 +111,12 @@ if __name__ == "__main__":
 
 14. Add the following code and save the file as you did before:
 
-```js
-{% extends "layout.html" %}
-{% block content %}
+```html
+{% extends "layout.html" %} {% block content %}
 <div class="jumbotron">
-    <div class="container">
-        <h1>{{model.title}}</h1>
-    </div>
+  <div class="container">
+    <h1>{{model.title}}</h1>
+  </div>
 </div>
 {% endblock %}
 ```
