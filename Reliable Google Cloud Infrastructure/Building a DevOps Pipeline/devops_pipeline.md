@@ -483,4 +483,6 @@ Lab Region-docker.pkg.dev/Project ID/devops-demo/devops-image@sha256:8aede81a8b6
 
 7. When the machine is created, test your change by making a request to the VM's external IP address in your browser. Your new message should be displayed.
 
+![alt text](image-47.png)
+
 > Note: You might have to wait a few minutes after the VM is created for the Docker container to start.
