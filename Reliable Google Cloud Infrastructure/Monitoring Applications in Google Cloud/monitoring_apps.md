@@ -14,7 +14,7 @@ gcloud auth list
 
 - Command output:
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 > Note: The gcloud command-line tool is the powerful and unified command-line tool in Google Cloud. It comes preinstalled in Cloud Shell. Among its features, gcloud offers tab completion in the shell. For more information, see [gcloud command-line tool overview](https://cloud.google.com/sdk/gcloud).
 
@@ -26,7 +26,7 @@ gcloud config list project
 
 - Command output
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 5. If the correct project is not listed, you can set it with this command:
 
@@ -36,7 +36,7 @@ gcloud config set project [PROJECT_ID]
 
 - Command output:
 
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 6. To create a folder called gcp-logging, run the following command:
 
@@ -62,7 +62,7 @@ git clone https://GitHub.com/GoogleCloudPlatform/training-data-analyst.git
 cd training-data-analyst/courses/design-process/deploying-apps-to-gcp
 ```
 
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 10. In Cloud Shell, click Open Editor.
 
@@ -74,7 +74,7 @@ cd training-data-analyst/courses/design-process/deploying-apps-to-gcp
 import googlecloudprofiler
 ```
 
-![alt text](image-4.png)
+![alt text](images/image-4.png)
 
 > Note: Profiler allows you to monitor the resources your applications use. For more information, refer to the [Google Cloud Profiler documentation](https://cloud.google.com/profiler/docs/).
 
@@ -87,7 +87,7 @@ except (ValueError, NotImplementedError) as exc:
     print(exc)
 ```
 
-![alt text](image-5.png)
+![alt text](images/image-5.png)
 
 - Profiler will continuously report application metrics. Your code should look like this:
 
@@ -100,7 +100,7 @@ protobuf==3.20.1
 
 The file should look like this:
 
-![alt text](image-6.png)
+![alt text](images/image-6.png)
 
 15. Profiler has to be enabled in the project. In Cloud Shell, enter the following command:
 
@@ -108,15 +108,15 @@ The file should look like this:
 gcloud services enable cloudprofiler.googleapis.com
 ```
 
-16. To test the program, enter the following command to build a Docker container of the image:
+16. To test the program, enter the following command to build a Docker container of the images/image:
 
 ```bash
 docker build -t test-python .
 ```
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 
-17. To run the Docker image, enter the following command:
+17. To run the Docker images/image, enter the following command:
 
 ```bash
 docker run --rm -p 8080:8080 test-python
@@ -124,7 +124,7 @@ docker run --rm -p 8080:8080 test-python
 
 18. To see the program running, click Web Preview in the Google Cloud Shell toolbar. Then select Preview on port 8080.
 
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 The program should be displayed in a new browser tab.
 
@@ -142,7 +142,7 @@ The program should be displayed in a new browser tab.
 runtime: python39
 ```
 
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 
 4. Save your changes.
 
@@ -158,13 +158,13 @@ gcloud app create --region=REGION
 gcloud app deploy --version=one --quiet
 ```
 
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 
 7. On the Google Cloud console title bar, type App Engine in the Search field, then click App Engine in the Products & Pages section.
 
 8. Click App Engine > Dashboard. The upper-right corner of the dashboard should display a link to your application similar to this:
 
-![alt text](image-11.png)
+![alt text](images/image-11.png)
 
 > Note: By default, the URL to an App Engine instance is in the form of `https://project-id/appspot.com`.
 
@@ -176,17 +176,17 @@ gcloud app deploy --version=one --quiet
 
 12. In Diagnose column of the table click Logs.
 
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 
 13. The logs should indicate that Profiler has started and profiles are being generated. If you get to this point too quickly, wait a minute and click Refresh.
 
-![alt text](image-13.png)
+![alt text](images/image-13.png)
 
 ### 3. View Profiler information
 
 1. On the Google Cloud console title bar, type Profiler in the Search field, then click Profiler in the Products & Pages section. The screen should look similar to this:
 
-![alt text](image-14.png)
+![alt text](images/image-14.png)
 
 2. On the Navigation menu, click Compute Engine.
 
@@ -196,7 +196,7 @@ gcloud app deploy --version=one --quiet
 
 - Accept all the rest of the defaults and click Create.
 
-![alt text](image-15.png)
+![alt text](images/image-15.png)
 
 5. When the VM is ready, click SSH to log in to it.
 
@@ -219,13 +219,13 @@ The command will make a thousand requests, 10 at a time, to your application.
 
 9. When the requests are finished, on the Google Cloud console title bar, type Profiler in the Search field, then click Profiler in the Products & Pages section.
 
-![alt text](image-16.png)
+![alt text](images/image-16.png)
 
 ### 4. Explore Cloud Trace
 
 1. Every request to your application is added to the Trace list. On the Google Cloud console title bar, type Trace Explorer in the Search field, then click Trace Explorer in the Products & Pages section.
 
-![alt text](image-17.png)
+![alt text](images/image-17.png)
 
 2. Return to the SSH window where you entered the Apache Bench command previously.
 
@@ -245,7 +245,7 @@ You can also experiment with different values for the -n and -c parameters.
 
 2. In the left pane, click Dashboards. Cloud Monitoring analyzes the resources used in your projects and generates some default dashboards for you. In this exercise you have used App Engine and Compute Engine virtual machines, so a table similar to the one shown below should be displayed:
 
-![alt text](image-18.png)
+![alt text](images/image-18.png)
 
 3. Click on the App Engine dashboard, and then select your project name. A dashboard of pertinent information for your App Engine application will appear.
 
@@ -263,7 +263,7 @@ You can also experiment with different values for the -n and -c parameters.
 
 1. In the left pane, click Uptime checks, and then click the + Create Uptime Check link at the top. Fill out the form as follows:
 
-![alt text](image-19.png)
+![alt text](images/image-19.png)
 
 | Property        | Value                           |
 | --------------- | ------------------------------- |
@@ -273,17 +273,17 @@ You can also experiment with different values for the -n and -c parameters.
 | Path            | /                               |
 | Check Frequency | 1 minute                        |
 
-![alt text](image-20.png)
+![alt text](images/image-20.png)
 
 2. Click Continue and in Review section enter `App Engine Uptime Check` in Title.
 
 3. Click Test to verify that your uptime check can connect to the resource. When you see a green check mark everything can connect. Click Create.
 
-![alt text](image-21.png)
+![alt text](images/image-21.png)
 
 4. In the Uptime checks page click on 3 vertical dots next to your uptime check and select Add alert policy.
 
-![alt text](image-22.png)
+![alt text](images/image-22.png)
 
 5. In Notifications and name click on the drop down arrow next to Notification Channels, then click on Manage Notification Channels. A Notification channels page will open in a new tab.
 
@@ -297,11 +297,11 @@ You can also experiment with different values for the -n and -c parameters.
 
 10. Now, select your Display name and click OK.
 
-![alt text](image-23.png)
+![alt text](images/image-23.png)
 
 11. Name the alert policy as Uptime Check Alert.
 
-![alt text](image-24.png)
+![alt text](images/image-24.png)
 
 12. Click Create Policy. The uptime check you configured takes a while for it to become active.
 
