@@ -1,6 +1,6 @@
 # Building a DevOps Pipeline
 
-![alt text](image.png)
+![alt text](image/image.png)
 
 ### 1. Create a Git repository
 
@@ -8,11 +8,11 @@
 
 2. Click Add repository.
 
-![alt text](image-1.png)
+![alt text](image/image-1.png)
 
 3. Select Create new repository and click Continue.
 
-![alt text](image-2.png)
+![alt text](image/image-2.png)
 
 4. Name the repository `devops-repo`.
 
@@ -20,11 +20,11 @@
 
 6. Click Create.
 
-![alt text](image-3.png)
+![alt text](image/image-3.png)
 
 7. Click Cloud Console, and in the new tab click Activate Cloud Shell.
 
-![alt text](image-4.png)
+![alt text](image/image-4.png)
 
 8. If prompted, click Continue.
 
@@ -40,7 +40,7 @@ mkdir gcp-course
 cd gcp-course
 ```
 
-![alt text](image-5.png)
+![alt text](image/image-5.png)
 
 11. Now clone the empty repository you just created. If prompted, click Authorize:
 
@@ -56,7 +56,7 @@ gcloud source repos clone devops-repo
 cd devops-repo
 ```
 
-![alt text](image-6.png)
+![alt text](image/image-6.png)
 
 ### 2. Create a simple Python application
 
@@ -142,15 +142,15 @@ if __name__ == "__main__":
 Flask>=2.0.3
 ```
 
-![alt text](image-7.png)
+![alt text](image/image-7.png)
 
-![alt text](image-8.png)
+![alt text](image/image-8.png)
 
-![alt text](image-9.png)
+![alt text](image/image-9.png)
 
-![alt text](image-10.png)
+![alt text](image/image-10.png)
 
-![alt text](image-11.png)
+![alt text](image/image-11.png)
 
 17. You have some files now, so save them to the repository. First, you need to add all the files you created to your local Git repo. Click Open Terminal and in Cloud Shell, enter the following code:
 
@@ -172,7 +172,7 @@ git config --global user.name "Your Name"
 git commit -a -m "Initial Commit"
 ```
 
-![alt text](image-12.png)
+![alt text](image/image-12.png)
 
 20. You committed the changes locally, but have not updated the Git repository you created in Cloud Source Repositories. Enter the following command to push your changes to the cloud:
 
@@ -180,11 +180,11 @@ git commit -a -m "Initial Commit"
 git push origin master
 ```
 
-![alt text](image-13.png)
+![alt text](image/image-13.png)
 
 21. Refresh the `Cloud Source Repositories` web page. You should see the files you just created.
 
-![alt text](image-14.png)
+![alt text](image/image-14.png)
 
 ### 3. Define a Docker build
 
@@ -207,7 +207,7 @@ WORKDIR /app
 COPY . .
 ```
 
-These lines copy the source code from the current folder into the /app folder in the container image.
+These lines copy the source code from the current folder into the /app folder in the container image/image.
 
 4. Enter the following:
 
@@ -235,11 +235,11 @@ ENV PORT=80
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 main:app
 ```
 
-![alt text](image-17.png)
+![alt text](image/image-17.png)
 
 ### 4. Manage Docker images with Cloud Build and Artifact Registry
 
-The Docker image has to be built and then stored somewhere. You will use Cloud Build and Artifact Registry.
+The Docker image/image has to be built and then stored somewhere. You will use Cloud Build and Artifact Registry.
 
 1. Click Open Terminal to return to Cloud Shell. Make sure you are in the right folder:
 
@@ -267,13 +267,13 @@ gcloud artifacts repositories create devops-repo \
 gcloud auth configure-docker "REGION"-docker.pkg.dev
 ```
 
-5. To use Cloud Build to create the image and store it in Artifact Registry, type the following command:
+5. To use Cloud Build to create the image/image and store it in Artifact Registry, type the following command:
 
 ```bash
-gcloud builds submit --tag "REGION"-docker.pkg.dev/$DEVSHELL_PROJECT_ID/devops-repo/devops-image:v0.1 .
+gcloud builds submit --tag "REGION"-docker.pkg.dev/$DEVSHELL_PROJECT_ID/devops-repo/devops-image/image:v0.1 .
 ```
 
-![alt text](image-18.png)
+![alt text](image/image-18.png)
 
 6. On the Google Cloud console title bar, type Artifact Registry in the Search field, then click Artifact Registry in the Products & Pages section.
 
@@ -281,55 +281,55 @@ gcloud builds submit --tag "REGION"-docker.pkg.dev/$DEVSHELL_PROJECT_ID/devops-r
 
 8. Click devops-repo.
 
-![alt text](image-19.png)
+![alt text](image/image-19.png)
 
-9. Click devops-image. Your image should be listed.
+9. Click devops-image/image. Your image/image should be listed.
 
-![alt text](image-20.png)
+![alt text](image/image-20.png)
 
-![alt text](image-21.png)
+![alt text](image/image-21.png)
 
 10. On the Google Cloud console title bar, type Cloud Build in the Search field, then click Cloud Build in the Products & Pages section.
 
-![alt text](image-22.png)
+![alt text](image/image-22.png)
 
 11. Click on the Pin icon next to Cloud Build.
 
 12. Your build should be listed in the history.
 
-You will now try running this image from a Compute Engine virtual machine.
+You will now try running this image/image from a Compute Engine virtual machine.
 
 13. On the Navigation menu, click Compute Engine > VM Instance.
 
-![alt text](image-23.png)
+![alt text](image/image-23.png)
 
 14. Click Create Instance to create a VM.
 
 15. On the Create an instance page, specify the following, and leave the remaining settings as their defaults:
 
-| Property        | Value                                                                                     |
-| --------------- | ----------------------------------------------------------------------------------------- |
-| Container       | Click DEPLOY CONTAINER                                                                    |
-| Container image | '`Lab Region`-docker.pkg.dev/`Project ID`/devops-repo/devops-image:v0.1` and click SELECT |
-| Firewall        | Allow HTTP traffic                                                                        |
+| Property              | Value                                                                                           |
+| --------------------- | ----------------------------------------------------------------------------------------------- |
+| Container             | Click DEPLOY CONTAINER                                                                          |
+| Container image/image | '`Lab Region`-docker.pkg.dev/`Project ID`/devops-repo/devops-image/image:v0.1` and click SELECT |
+| Firewall              | Allow HTTP traffic                                                                              |
 
-![alt text](image-24.png)
+![alt text](image/image-24.png)
 
 > See Container Image
 >
-> `europe-west4-docker.pkg.dev/qwiklabs-gcp-04-c5631ba5aaec/devops-repo/devops-image:v0.1`
+> `europe-west4-docker.pkg.dev/qwiklabs-gcp-04-c5631ba5aaec/devops-repo/devops-image/image:v0.1`
 
-![alt text](image-25.png)
+![alt text](image/image-25.png)
 
-![alt text](image-26.png)
+![alt text](image/image-26.png)
 
-![alt text](image-27.png)
+![alt text](image/image-27.png)
 
 16. Click Create.
 
 17. Once the VM starts, click the VM's external IP address. A browser tab opens and the page displays `Hello DevOps Fans`.
 
-![alt text](image-28.png)
+![alt text](image/image-28.png)
 
 > Note: You might have to wait a minute or so after the VM is created for the Docker container to start.
 
@@ -352,11 +352,11 @@ git commit -am "Added Docker Support"
 git push origin master
 ```
 
-![alt text](image-29.png)
+![alt text](image/image-29.png)
 
 21. Return to Cloud Source Repositories and verify that your changes were added to source control.
 
-![alt text](image-30.png)
+![alt text](image/image-30.png)
 
 ### 5. Automate builds with triggers
 
@@ -368,11 +368,11 @@ git push origin master
 
 4. Enable the Set as Preferred Service Account option. Set the status of the Cloud Build service to Enabled.
 
-![alt text](image-31.png)
+![alt text](image/image-31.png)
 
 5. Go to Triggers in the left navigation and click Create trigger.
 
-![alt text](image-32.png)
+![alt text](image/image-32.png)
 
 6. Specify the following:
 
@@ -385,41 +385,41 @@ git push origin master
 | Configuration Type | Cloud Build configuration file (yaml or json) |
 | Location           | Inline                                        |
 
-![alt text](image-33.png)
+![alt text](image/image-33.png)
 
-![alt text](image-34.png)
+![alt text](image/image-34.png)
 
 7. Click Open Editor and replace the code with the code mentioned below and click Done.
 
 ```bash
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'REGION-docker.pkg.dev/Project ID/devops-repo/devops-image:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'REGION-docker.pkg.dev/Project ID/devops-repo/devops-image/image:$COMMIT_SHA', '.']
 images:
-  - 'REGION-docker.pkg.dev/Project ID/devops-repo/devops-image:$COMMIT_SHA'
+  - 'REGION-docker.pkg.dev/Project ID/devops-repo/devops-image/image:$COMMIT_SHA'
 options:
   logging: CLOUD_LOGGING_ONLY
 ```
 
-![alt text](image-35.png)
+![alt text](image/image-35.png)
 
 8. For Service account select the service account starting with your project-id that look similar to (Project ID@Project ID.iam.gserviceaccount.com) and and click Create.
 
-![alt text](image-36.png)
+![alt text](image/image-36.png)
 
 9. To test the trigger, click Run and then Run trigger.
 
-![alt text](image-37.png)
+![alt text](image/image-37.png)
 
-![alt text](image-38.png)
+![alt text](image/image-38.png)
 
 10. Click the History link and you should see a build running. Wait for the build to finish, and then click the link to it to see its details.
 
-![alt text](image-39.png)
+![alt text](image/image-39.png)
 
 11. Scroll down and look at the logs. The output of the build here is what you would have seen if you were running it on your machine.
 
-12. Return to the Artifact Registry service. You should see a new image in the devops-repo > devops-image folder.
+12. Return to the Artifact Registry service. You should see a new image/image in the devops-repo > devops-image/image folder.
 
 13. Return to the Cloud Shell Code Editor. Find the file main.py in the gcp-course/devops-repo folder.
 
@@ -432,7 +432,7 @@ def main():
     return render_template("index.html", model=model)
 ```
 
-![alt text](image-40.png)
+![alt text](image/image-40.png)
 
 15. Commit the change with the following command:
 
@@ -447,7 +447,7 @@ git commit -a -m "Testing Build Trigger"
 git push origin master
 ```
 
-![alt text](image-41.png)
+![alt text](image/image-41.png)
 
 17. Return to the Cloud Console and the Cloud Build service. You should see another build running.
 
@@ -455,34 +455,34 @@ git push origin master
 
 1. When the build completes, click on it to see its details.
 
-![alt text](image-42.png)
+![alt text](image/image-42.png)
 
 2. Click Execution Details
 
-![alt text](image-43.png)
+![alt text](image/image-43.png)
 
-3. Click the Image name. This redirects you to the image page in Artifact Registry.
+3. Click the Image name. This redirects you to the image/image page in Artifact Registry.
 
-![alt text](image-44.png)
+![alt text](image/image-44.png)
 
-4. At the top of the pane, click copy next to the image name. You will need this for the next steps. The format will look as follows.
+4. At the top of the pane, click copy next to the image/image name. You will need this for the next steps. The format will look as follows.
 
 ```bash
-Lab Region-docker.pkg.dev/Project ID/devops-demo/devops-image@sha256:8aede81a8b6ba1a90d4d808f509d05ddbb1cee60a50ebcf0cee46e1df9a54810
+Lab Region-docker.pkg.dev/Project ID/devops-demo/devops-image/image@sha256:8aede81a8b6ba1a90d4d808f509d05ddbb1cee60a50ebcf0cee46e1df9a54810
 ```
 
-![alt text](image-45.png)
+![alt text](image/image-45.png)
 
-> Note: Do not use the image name located in Digest.
+> Note: Do not use the image/image name located in Digest.
 
-5. Go to the Compute Engine service. As you did earlier, create a new virtual machine to test this image. Click DEPLOY CONTAINER and paste the image you just copied.
+5. Go to the Compute Engine service. As you did earlier, create a new virtual machine to test this image/image. Click DEPLOY CONTAINER and paste the image/image you just copied.
 
 6. Select Allow HTTP traffic.
 
-![alt text](image-46.png)
+![alt text](image/image-46.png)
 
 7. When the machine is created, test your change by making a request to the VM's external IP address in your browser. Your new message should be displayed.
 
-![alt text](image-47.png)
+![alt text](image/image-47.png)
 
 > Note: You might have to wait a few minutes after the VM is created for the Docker container to start.
