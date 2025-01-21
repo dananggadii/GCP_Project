@@ -6,11 +6,11 @@
 
 You need some source code to manage. So, you will create a simple Python Flask web application. The application will be only slightly better than "hello world", but it will be good enough to test the pipeline you will build.
 
-1. In the Cloud Console, click Activate Cloud Shell (Activate Cloud Shell icon).
+1. In the Cloud Console, click Activate Cloud Shell.
 
 2. If prompted, click Continue.
 
-3.9. Enter the following command in Cloud Shell to create a folder called gcp-course:
+3.9. Enter the following command in Cloud Shell to create a folder called `gcp-course`:
 
 ```bash
 mkdir gcp-course
@@ -33,6 +33,8 @@ mkdir deploying-apps-to-gcp
 ```bash
 cd deploying-apps-to-gcp
 ```
+
+![alt text](image-1.png)
 
 6. In Cloud Shell, click Open Editor (Editor icon) to open the code editor. If prompted click Open in a new window.
 
@@ -119,6 +121,16 @@ Jinja2==3.0.3
 werkzeug==2.2.2
 ```
 
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+![alt text](image-6.png)
+
 ### 2. Define a Docker build'
 
 The first step to using Docker is to create a file called Dockerfile. This file defines how a Docker container is constructed. You will do that now.
@@ -139,6 +151,8 @@ ENV PORT=8080
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 main:app
 ```
 
+![alt text](image-7.png)
+
 3. To test the program, type the following command to build a Docker container of the image:
 
 ```bash
@@ -151,7 +165,9 @@ docker build -t test-python .
 docker run --rm -p 8080:8080 test-python
 ```
 
-5. To see the program running, click Web Preview (Web Preview icon) in the toolbar of Google Cloud Shell. Then, select Preview on port 8080.
+![alt text](image-8.png)
+
+5. To see the program running, click Web Preview in the toolbar of Google Cloud Shell. Then, select Preview on port 8080.
 
 The program should be displayed in a new browser tab.
 
@@ -173,6 +189,8 @@ runtime: python39
 
 5. Save your changes.
 
+![alt text](image-9.png)
+
 6. In a project, an App Engine application has to be created. This is done just once using the gcloud app create command and specifying the region where you want the app to be created. Click Open Terminal and type the following command. If prompted, click Authorize:
 
 ```bash
@@ -188,6 +206,8 @@ gcloud app deploy --version=one --quiet
 8. On the Google Cloud console title bar, type App Engine in the Search field, then click App Engine in the Search Results section.
 
 9. In the upper-right corner of the dashboard is a link to your application, similar to this:
+
+![alt text](image-10.png)
 
 > Note: By default, the URL to an App Engine application is in the form of `https://project-id.appspot.com`.
 
@@ -206,6 +226,8 @@ def main():
     return render_template('index.html', model=model)
 ```
 
+![alt text](image-11.png)
+
 14. Click File > Save in the code editor toolbar to save your change.
 
 15. Now, deploy version two with the following command:
@@ -214,15 +236,25 @@ def main():
 gcloud app deploy --version=two --no-promote --quiet
 ```
 
+![alt text](image-12.png)
+
 > Note: The `--no-promote` parameter tells App Engine to continue serving requests with the old version. This allows you to test the new version before putting it into production.
 
 16. When the command completes, return to the App Engine dashboard. Click the link again, and version one will still be returned. It should return `Hello GCP`. This is because of the `--no-promote` parameter in the previous command.
 
 17. On the left, click the Versions tab. Notice that two versions are listed.
 
+![alt text](image-13.png)
+
 18. Click on the version two link to test it. It should return `Hello App Engine`.
 
+![alt text](image-14.png)
+
 19. To migrate production traffic to version two, click Split Traffic at the top. Change the version to two, and click Save.
+
+![alt text](image-15.png)
+
+![alt text](image-16.png)
 
 20. Give it a minute to complete. Refresh the browser tab that earlier returned `Hello GCP`. It should now return the new version.
 
@@ -232,11 +264,23 @@ gcloud app deploy --version=two --no-promote --quiet
 
 2. Click Create Cluster then click Switch to Standard Cluster confirm Switch to Standard Cluster.
 
+![alt text](image-18.png)
+
+![alt text](image-19.png)
+
+![alt text](image-20.png)
+
 3. Click Zonal for Location type and then select the zone `Zone`. Accept all the other variables as default then click Create. It will take a couple of minutes for the Kubernetes Engine cluster to be created. When the cluster is ready, a green check appears.
+
+![alt text](image-21.png)
 
 4. Click the three dots to the right of the cluster and then click Connect.
 
 5. In the Connect to the cluster screen, click Run in Cloud Shell. This opens Cloud Shell with the connect command entered automatically.
+
+![alt text](image-22.png)
+
+![alt text](image-23.png)
 
 6. Press Enter to connect to the cluster.
 
@@ -245,6 +289,8 @@ gcloud app deploy --version=two --no-promote --quiet
 ```bash
 kubectl get nodes
 ```
+
+![alt text](image-24.png)
 
 8. In Cloud Shell, click Open Editor.
 
@@ -259,6 +305,8 @@ def main():
     model = {"title" "Hello Kubernetes Engine"}
     return render_template('index.html', model=model)
 ```
+
+![alt text](image-25.png)
 
 11. Save your change.
 
@@ -311,6 +359,8 @@ spec:
     tier: frontend
 ```
 
+![alt text](image-26.png)
+
 > Note: In the first section of the YAML file above, you are configuring a deployment. In this case, you are deploying 3 instances of your Python web app. Notice the image attribute. You will update this value with your image in a minute after you build it. In the second section, you are configuring a service of the type "load balancer". The load balancer will have a public IP address. Users will access your application through the load balancer.
 >
 > For more information on Kubernetes deployments and services, see the links below:
@@ -345,6 +395,8 @@ gcloud builds submit --tag "REGION"-docker.pkg.dev/$DEVSHELL_PROJECT_ID/devops-d
 
 You should see something similar to below:
 
+![alt text](image-27.png)
+
 ```bash
 spec:
   containers:
@@ -375,6 +427,8 @@ kubectl get services
 
 You should see something similar to below:
 
+![alt text](image-28.png)
+
 If the load balancer's external IP address says "pending", wait a few seconds and try again.
 
 22. When you have an external IP, open a browser tab and make a request to it. It should return Hello Kubernetes Engine. It might take a few seconds to be ready.
@@ -394,6 +448,8 @@ def main():
 
 3. Save your change.
 
+![alt text](image-29.png)
+
 4. To use Cloud Run, you need to build a Docker image. In Cloud Shell, type the following commands to use Cloud Build to create the image and store it in Artifact Registry:
 
 ```bash
@@ -405,16 +461,26 @@ gcloud builds submit --tag "REGION"-docker.pkg.dev/$DEVSHELL_PROJECT_ID/devops-d
 
 6. Click Create service. This enables the Cloud Run API.
 
+![alt text](image-30.png)
+
 7. Click the Select link in the `Container image` URL text box and then click Artifact Registry. In the resulting dialog, expand Region-docker.pkg.dev/$DEVSHELL_PROJECT_ID/devops-demo > cloud-run-image and select the image listed. Then click Select.
+
+![alt text](image-31.png)
 
 8. In Service name, type hello-cloud-run and select region `REGION`.
 
 9. For Authentication, select Allow unauthenticated invocations.
 
+![alt text](image-32.png)
+
 10. In Container(s), Volumes, Networking, Security, select Default in the Execution environment section.
 
 11. In Revision scaling, set the Maximum number of instances to 6. Leave the rest as defaults.
 
+![alt text](image-33.png)
+
 12. Finally, click Create.
+
+![alt text](image-34.png)
 
 13. It shouldn't take long for the service to deploy. When a green check appears, click on the URL that is automatically generated for the application. It should return `Hello Cloud Run`.
